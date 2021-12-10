@@ -19,6 +19,6 @@
     "server": "node-dev server.js",
     "server-prod": "node server.js",
     "client": "cd client/ && yarn start",
-    "heroku-postbuild": "YARN_CONFIG_PRODUCTION=false yarn install --prefix client && yarn run build --prefix client"
+    "heroku-postbuild": "cd client/ && yarn install && yarn build"
   }
 }
