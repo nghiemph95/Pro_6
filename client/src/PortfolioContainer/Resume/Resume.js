@@ -57,7 +57,7 @@ export default function Resume(props) {
     { skill: "JavaScript", ratingPercentage: 85 },
     { skill: "React JS", ratingPercentage: 85 },
     { skill: "TypeScript", ratingPercentage: 90 },
-    { skill: "AWS DevOps", ratingPercentage: 70 },
+    { skill: "AWS DevOps", ratingPercentage: 40 },
     { skill: "Node JS", ratingPercentage: 70 },
     { skill: "Business Analysis", ratingPercentage: 80 },
     { skill: "Project Management", ratingPercentage: 80 },
@@ -75,20 +75,20 @@ export default function Resume(props) {
       subHeading: "Technologies Used: React JS, Bootsrap, NodeJS",
     },
     {
-      title: "Mobile E-shop ",
+      title: "Restaurant Management Website",
       duration: { fromDate: "2020", toDate: "2021" },
       description:
-        "An ecommerce application designed to sell products online wth payment system integration",
+        "A management application designed to tracking selling products with business system integration for a restaurant",
       subHeading:
-        "Technologies Used:  React Native, Mongo DB, Express Js, Node Js, Redux.",
+        "Technologies Used:  React JS, NodeJS, Material UI, AWS, TypeScript.",
     },
     {
-      title: "Ecommerce Website ",
+      title: "GitHub",
       duration: { fromDate: "2020", toDate: "2021" },
       description:
-        "Online ecommerce website for showcasing and selling products onlne with payment system integration, both Paypal and Stripe",
+        "Please via my address Git: https://github.com/nghiemph95",
       subHeading:
-        "Technologies Used: Mongo DB, Express Js, React Js, Node JS, Redux, Bootstrap.",
+        "Technologies Used: TypeScript, JavaScript, HTML/CSS, UI, NodeJS, ExpressJS, Bootstrap,....",
     },
   ];
 
