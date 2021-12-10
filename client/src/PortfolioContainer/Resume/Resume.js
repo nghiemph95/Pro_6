@@ -69,7 +69,7 @@ export default function Resume(props) {
   const projectsDetails = [
     {
       title: "Personal Portfolio Website",
-      duration: { fromDate: "2020", toDate: "2021" },
+      duration: { fromDate: "2017", toDate: "2021" },
       description:
         "A Personal Portfolio website to showcase all my details and projects at one place.",
       subHeading: "Technologies Used: React JS, Bootsrap, NodeJS",
