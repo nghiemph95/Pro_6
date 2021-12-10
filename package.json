@@ -1,0 +1,24 @@
+{
+  "name": "Pro_6",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": "https://github.com/nghiemph95/Pro_6.git",
+  "author": "nghiemph95 <nghiemph95@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^6.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "node-dev": "^7.1.0",
+    "nodemailer": "^6.7.2",
+    "nodemon": "^2.0.15"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "node-dev server.js",
+    "server-prod": "node server.js",
+    "client": "cd client/ && yarn start",
+    "heroku-postbuild": "YARN_CONFIG_PRODUCTION=false yarn install --prefix client && yarn run build --prefix client"
+  }
+}
