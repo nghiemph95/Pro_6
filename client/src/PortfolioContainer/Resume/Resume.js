@@ -49,7 +49,7 @@ export default function Resume(props) {
     { label: "Work History", logoSrc: "work-history.svg" },
     { label: "Programming-Skills", logoSrc: "programming-skills.svg" },
     { label: "Projects", logoSrc: "projects.svg" },
-    { label: "Interests", logoSrc: "interests.svg" },
+    { label: "Achievements", logoSrc: "interests.svg" },
   ];
 
   //here we have
@@ -69,14 +69,14 @@ export default function Resume(props) {
   const projectsDetails = [
     {
       title: "Personal Portfolio Website",
-      duration: { fromDate: "2017", toDate: "2021" },
+      duration: { fromDate: "2017", toDate: "now" },
       description:
         "A Personal Portfolio website to showcase all my details and projects at one place.",
       subHeading: "Technologies Used: React JS, Bootsrap, NodeJS",
     },
     {
       title: "Restaurant Management Website",
-      duration: { fromDate: "2020", toDate: "2021" },
+      duration: { fromDate: "2020", toDate: "now" },
       description:
         "A management application designed to tracking selling products with business system integration for a restaurant",
       subHeading:
@@ -84,9 +84,8 @@ export default function Resume(props) {
     },
     {
       title: "GitHub",
-      duration: { fromDate: "2020", toDate: "2021" },
-      description:
-        "Please via my address Git: https://github.com/nghiemph95",
+      duration: { fromDate: "2020", toDate: "now" },
+      description: "Please via my address Git: https://github.com/nghiemph95",
       subHeading:
         "Technologies Used: TypeScript, JavaScript, HTML/CSS, UI, NodeJS, ExpressJS, Bootstrap,....",
     },
@@ -128,27 +127,39 @@ export default function Resume(props) {
         />
         <div className="experience-description">
           <span className="resume-description-text">
-            Research and develop totally software and systems in Core Banking of
-            Shinhan Bank.
+            - Developed an system for client/server with the dashboard for
+            managing the business products, managing reviews, users, payment,
+            common, deposit, loan, etc. .
           </span>
         </div>
+
+        <br />
+
+        <ResumeHeading
+          heading={"VPBank - Vietnam Prosperity Join-Stock Commercial Bank"}
+          subHeading={"IT BUSINESS ANALYST - RETAIL RISK"}
+          fromDate={"2020"}
+          toDate={"2021"}
+        />
         <div className="experience-description">
           <span className="resume-description-text">
-            - Developed an system for client with the dashboard for managing the
-            business products, managing reviews, users, payment, common,
-            deposit, loan, etc. .
+            IT System Business Analysis - Risk Division Management
           </span>
-          <br />
+        </div>
+
+        <br />
+
+        <ResumeHeading
+          heading={"VietCredit Finance Company"}
+          subHeading={"IT BUSINESS ANALYST - ICT DEPARTMENT"}
+          fromDate={"2021"}
+          toDate={"now"}
+        />
+        <div className="experience-description">
           <span className="resume-description-text">
-            - Integrated the web app with backend services to deploying new
-            digital products onboarding application with dynamic form content.{" "}
+            Technical Business Analysis for all Technical Innovation Strategy at
+            Business Analysis Department
           </span>
-          <br />
-          <span className="resume-description-text">
-            - I stretch my mental capacity to develop Full-Stack as per the
-            given business strategy discussed.
-          </span>
-          <br />
         </div>
       </div>
     </div>,
@@ -186,20 +197,30 @@ export default function Resume(props) {
       ))}
     </div>,
 
-    /* INTEREST */
+    /* Achievements */
     <div className="resume-screen-container" key="interests">
       <ResumeHeading
-        heading="Freelancer"
-        description="Apart from being a tech enthusiast and a code writer, I also love to connect to another people by the other project external that I know simply because these make me better."
+        heading={"Learning Courses"}
+        subHeading={"PRACTICE BY MYSELF"}
+        fromDate={"2021"}
+        toDate={"now"}
       />
-      <ResumeHeading
-        heading="Music"
-        description="Listening to soothing music is something I can never compromise with, skimming through Spotify's pop songs charts is at times the best stress reliever that I can get my hands on."
-      />
-      <ResumeHeading
-        heading="Competitive Sports"
-        description="I like to challenge my reflexes a lot while competing in football, pushing the rank and having interactive gaming sessions excites me the most."
-      />
+      <div className="interests-description">
+        <span className="interests-description-text">
+          1. The Ultimate ReactJS Responsive Website - Udemy Course (2021)
+        </span>
+      </div>
+      <div className="interests-description">
+        <span className="interests-description-text">
+          2. 50 Projects In 50 Days - HTML, CSS and JavaScript - Udemy Course
+          (2022)
+        </span>
+      </div>
+      <div className="interests-description">
+        <span className="interests-description-text">
+          3. The Complete Front-End Web Development Course - Udemy Course (2022)
+        </span>
+      </div>
     </div>,
   ];
 

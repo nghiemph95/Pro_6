@@ -37,6 +37,16 @@
   max-width: 100%;
 }
 
+.interests-description {
+  margin: 10px 0 0 0;
+  text-align: justify;
+  max-width: 100%;
+}
+
+.interests-description-text {
+  font-size: 15px;
+}
+
 .resume-details-carousal {
   transition: transform 1s ease-out;
 }
