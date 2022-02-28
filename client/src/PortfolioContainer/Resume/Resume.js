@@ -78,14 +78,14 @@ export default function Resume(props) {
       title: "Restaurant Management Website",
       duration: { fromDate: "2020", toDate: "now" },
       description:
-        "A management application designed to tracking selling products with business system integration for a restaurant",
+        "A management application designed to tracking selling products with business system integration for a restaurant. Link: https://centurygialai.com/",
       subHeading:
-        "Technologies Used:  React JS, NodeJS, Material UI, AWS, TypeScript.",
+        "Technologies Used:  ReactJS, NodeJS, Docker, AWS, TypeScript, GitLab.",
     },
     {
       title: "GitHub",
       duration: { fromDate: "2020", toDate: "now" },
-      description: "Please via my address Git: https://github.com/nghiemph95",
+      description: "Please visit my Git: https://github.com/nghiemph95",
       subHeading:
         "Technologies Used: TypeScript, JavaScript, HTML/CSS, UI, NodeJS, ExpressJS, Bootstrap,....",
     },
@@ -191,6 +191,7 @@ export default function Resume(props) {
           heading={projectsDetails.title}
           subHeading={projectsDetails.subHeading}
           description={projectsDetails.description}
+          h
           fromDate={projectsDetails.duration.fromDate}
           toDate={projectsDetails.duration.toDate}
         />

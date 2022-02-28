@@ -13,6 +13,7 @@ import ethuyen from "../../../src/assets/Testimonial/ethuyen.png";
 import gk from "../../../src/assets/Testimonial/gk.png";
 import tri from "../../../src/assets/Testimonial/tri.png";
 import shape from "../../../src/assets/Testimonial/shape-bg.png";
+import ahoang from "../../../src/assets/Testimonial/ahoang.png";
 
 export default function Testimonial(props) {
   let fadeInScreenHandler = (screen) => {
@@ -145,7 +146,7 @@ export default function Testimonial(props) {
                     <p>
                       <i className="fa fa-quote-left" />
                       When he delivered my job, my head spinned, it was so nice
-                      and he implemented every functionality i requested for.
+                      and he implemented every functionality I requested for.
                       Thank you.
                       <i className="fa fa-quote-right" />
                     </p>
@@ -247,6 +248,43 @@ export default function Testimonial(props) {
                     <img src={tri} alt="no internet connection"></img>
                     <h5>Le Kieu Minh Tri</h5>
                     <p>Software Developer at Shinhan DS</p>
+                  </div>
+                </div>
+              </div>
+
+              {/** GK */}
+
+              <div className="col-lg-12">
+                <div className="testi-item">
+                  <div className="testi-comment">
+                    <p>
+                      <i className="fa fa-quote-left" />
+                      That awesome when I hired him and when He co-work with me.
+                      He is indeed a great guy and warmup.
+                      <i className="fa fa-quote-right" />
+                    </p>
+                    <ul className="stars list-unstyled">
+                      <li>
+                        <i className="fa fa-star" />
+                      </li>
+                      <li>
+                        <i className="fa fa-star" />
+                      </li>
+                      <li>
+                        <i className="fa fa-star" />
+                      </li>
+                      <li>
+                        <i className="fa fa-star-half-alt" />
+                      </li>
+                      <li>
+                        <i className="fa fa-star" />
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="client-info">
+                    <img src={ahoang} alt="no internet connection"></img>
+                    <h5>Tran Si Hoang</h5>
+                    <p>Head of BA Department at VietCredit</p>
                   </div>
                 </div>
               </div>
