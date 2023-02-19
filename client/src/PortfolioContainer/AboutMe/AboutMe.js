@@ -14,17 +14,16 @@ export default function AboutMe(props) {
 
   const SCREEN_CONSTSANTS = {
     description:
-      "I am so fluid, focused and willing to learn new things. In all, I believe in knowledge intergrations. All phases of the software development lifecycle, technical solutions and fanatical about quality.",
+      "Me is trying to become a Fullstack Engineer which is hands on in all stages of the programming cycle, from planning and design to testing and deployment. Something that I love about programming is the opportunity to work with people from a wide range of disciplines. I love challenges and learning new so I can adapt well to the needs and flexible changes of the market. ",
     highlights: {
       bullets: [
-        "Full Stack web development",
-        "Interactive Front End as per the design",
-        "ReactJS",
-        "NodeJS",
-        "Business Analysis",
-        "Managing database",
+        "Client-side development (Web App)",
+        "Server-side development",
+        "Containers, CI/CD, Deployment",
+        "Cloud (AWS, Azure,...)",
       ],
-      heading: "Here are a Few Highlights:",
+      heading:
+        "My plan for the next 5 years is upgrade skills & experience on these new areas of expertise",
     },
   };
 

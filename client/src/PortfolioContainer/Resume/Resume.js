@@ -54,25 +54,23 @@ export default function Resume(props) {
 
   //here we have
   const programmingSkillsDetails = [
-    { skill: "JavaScript", ratingPercentage: 85 },
+    { skill: "JavaScript", ratingPercentage: 80 },
     { skill: "React JS", ratingPercentage: 85 },
-    { skill: "TypeScript", ratingPercentage: 90 },
-    { skill: "AWS DevOps", ratingPercentage: 40 },
+    { skill: "TypeScript", ratingPercentage: 85 },
     { skill: "Node JS", ratingPercentage: 70 },
+    { skill: "AWS DevOps", ratingPercentage: 40 },
     { skill: "Business Analysis", ratingPercentage: 80 },
-    { skill: "Project Management", ratingPercentage: 80 },
-    { skill: "HTML", ratingPercentage: 80 },
-    { skill: "CSS", ratingPercentage: 80 },
+    { skill: "HTML/CSS", ratingPercentage: 80 },
     { skill: "Bootstrap/RxJS/ExpressJS", ratingPercentage: 30 },
   ];
 
   const projectsDetails = [
     {
-      title: "Personal Portfolio Website",
-      duration: { fromDate: "2017", toDate: "now" },
+      title: "Core Banking",
+      duration: { fromDate: "2018", toDate: "2021" },
       description:
-        "A Personal Portfolio website to showcase all my details and projects at one place.",
-      subHeading: "Technologies Used: React JS, Bootsrap, NodeJS",
+        "Development core banking: Tax, Customer service, Fee, Accounting",
+      subHeading: "Technologies Used: C, JavaScript, HTML/CSS, SQL Oracle",
     },
     {
       title: "Restaurant Management Website",
@@ -84,7 +82,7 @@ export default function Resume(props) {
     },
     {
       title: "GitHub",
-      duration: { fromDate: "2020", toDate: "now" },
+      duration: { fromDate: "2019", toDate: "now" },
       description: "Please visit my Git: https://github.com/nghiemph95",
       subHeading:
         "Technologies Used: TypeScript, JavaScript, HTML/CSS, UI, NodeJS, ExpressJS, Bootstrap,....",
@@ -94,12 +92,10 @@ export default function Resume(props) {
   const resumeDetails = [
     <div className="resume-screen-container" key="education">
       <ResumeHeading
-        heading={
-          "International University of Vietnam National University, Vietnam"
-        }
+        heading={"International University of Vietnam National University"}
         subHeading={"BACHELOR OF ELECTRICAL ENGINEERING"}
         fromDate={"2013"}
-        toDate={"2017"}
+        toDate={"2019"}
       />
 
       <ResumeHeading
@@ -108,38 +104,16 @@ export default function Resume(props) {
         fromDate={"2014"}
         toDate={"2015"}
       />
-      <ResumeHeading
-        heading={"High School"}
-        subHeading={"3th Provincial Excellent Student"}
-        fromDate={"2010"}
-        toDate={"2011"}
-      />
     </div>,
 
     /* WORK EXPERIENCE */
     <div className="resume-screen-container" key="work-experience">
       <div className="experience-container">
         <ResumeHeading
-          heading={"Shinhan DS Vietnam - Shinhan Group"}
-          subHeading={"SOFTWARE DEVELOPER - ICT DEPARTMENT"}
-          fromDate={"2018"}
-          toDate={"2020"}
-        />
-        <div className="experience-description">
-          <span className="resume-description-text">
-            - Developed an system for client/server with the dashboard for
-            managing the business products, managing reviews, users, payment,
-            common, deposit, loan, etc. .
-          </span>
-        </div>
-
-        <br />
-
-        <ResumeHeading
-          heading={"VPBank - Vietnam Prosperity Join-Stock Commercial Bank"}
-          subHeading={"IT BUSINESS ANALYST - RETAIL RISK"}
+          heading={"FREELANCE SOFTWARE DEVELOPER"}
+          subHeading={"Freelance"}
           fromDate={"2020"}
-          toDate={"2021"}
+          toDate={"now"}
         />
         <div className="experience-description">
           <span className="resume-description-text">
@@ -150,8 +124,8 @@ export default function Resume(props) {
         <br />
 
         <ResumeHeading
-          heading={"VietCredit Finance Company"}
-          subHeading={"IT BUSINESS ANALYST - ICT DEPARTMENT"}
+          heading={"VIETCREDIT FINANCE COMPANY"}
+          subHeading={"IT Business Analyst - ICT Divison"}
           fromDate={"2021"}
           toDate={"now"}
         />
@@ -159,6 +133,22 @@ export default function Resume(props) {
           <span className="resume-description-text">
             Technical Business Analysis for all Technical Innovation Strategy at
             Business Analysis Department
+          </span>
+        </div>
+
+        <br />
+
+        <ResumeHeading
+          heading={"SHINHAN DS VIETNAM"}
+          subHeading={"Software Developer - ICT Divison"}
+          fromDate={"2018"}
+          toDate={"2021"}
+        />
+        <div className="experience-description">
+          <span className="resume-description-text">
+            - Developed an system for client/server with the dashboard for
+            managing the business products, managing reviews, users, payment,
+            common, deposit, loan, etc. .
           </span>
         </div>
       </div>
@@ -221,6 +211,9 @@ export default function Resume(props) {
         <span className="interests-description-text">
           3. The Complete Front-End Web Development Course - Udemy Course (2022)
         </span>
+      </div>
+      <div className="interests-description">
+        <span className="interests-description-text">4. JavaScript (2021)</span>
       </div>
     </div>,
   ];
