@@ -42,22 +42,22 @@ export default function Profile() {
                 <Typical
                   loop={Infinity}
                   steps={[
+                    "ReactJS ⚛️",
+                    2000,
                     "Web Developer 💥",
                     2000,
                     "Full Stack Developer 🎯",
                     2000,
-                    "NodeJS Framework 😎",
+                    "NodeJS 😎",
                     2000,
                     "AWS DevOps 🧑‍🚀",
-                    2000,
-                    "ReactJS Framework ⚛️",
                     2000,
                   ]}
                 />
               </h1>
               <span className="profile-role-tagline">
-                Knack of building applications with front and back end
-                operations.
+                Skills: C, JavaScript, TypeScript, ReactJS, NodeJs, SQL, Docker,
+                Postgres, AWS (fundamental)
               </span>
             </span>
           </div>
@@ -72,7 +72,7 @@ export default function Profile() {
             </button>
             <a
               href="Pham-Nguyen-Thanh-Nghiem.pdf"
-              download="CV Pham-Nguyen-Thanh-Nghiem.pdf"
+              download="CV Nghiem-Pham.pdf"
             >
               <button className="btn highlighted-btn">Get Resume</button>
             </a>
