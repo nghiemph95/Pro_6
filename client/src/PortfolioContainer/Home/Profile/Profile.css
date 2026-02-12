@@ -3,107 +3,681 @@
   align-items: center;
   text-align: center;
   justify-content: center;
-  height: 10%;
-  min-height: fit-content;
-  
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1f2235 0%, #2d3142 50%, #1f2235 100%);
+  padding: 80px 20px;
+}
+
+.profile-tech-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.tech-grid {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(255, 88, 35, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 88, 35, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
+.gradient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.3;
+  animation: float 15s ease-in-out infinite;
+}
+
+.orb-1 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255, 88, 35, 0.4) 0%, transparent 70%);
+  top: -200px;
+  right: -200px;
+  animation-delay: 0s;
+}
+
+.orb-2 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(88, 101, 242, 0.3) 0%, transparent 70%);
+  bottom: -150px;
+  left: -150px;
+  animation-delay: 5s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -30px) scale(1.1); }
+}
+
+/* Floating 3D Tech Logos - Around Avatar */
+.profile-picture {
+  position: relative;
+}
+
+.floating-tech-logo {
+  position: absolute;
+  z-index: 10;
+  pointer-events: auto;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.tech-logo-3d {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  transform-style: preserve-3d;
+  transition: all 0.3s ease;
+}
+
+.tech-icon {
+  font-size: 32px;
+  display: block;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  transform: translateZ(20px);
+}
+
+.tech-logo-wrapper {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 8px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tech-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+  transform: translateZ(20px);
+  transition: all 0.3s ease;
+}
+
+.react-logo .tech-logo-img {
+  filter: drop-shadow(0 4px 12px rgba(97, 218, 251, 0.5));
+}
+
+.aws-logo .tech-logo-img {
+  filter: drop-shadow(0 4px 12px rgba(255, 153, 0, 0.5));
+}
+
+.nodejs-logo .tech-logo-img {
+  filter: drop-shadow(0 4px 12px rgba(83, 158, 67, 0.5));
+}
+
+.nextjs-logo .tech-logo-img {
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6));
+}
+
+.floating-tech-logo:hover .tech-logo-img {
+  transform: translateZ(30px) scale(1.15);
+}
+
+.floating-tech-logo:hover .tech-logo-wrapper {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.tech-name {
+  font-size: 12px;
+  font-family: "Poppins SemiBold";
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.5px;
+  transform: translateZ(10px);
+}
+
+/* React Logo - Position around avatar (right side) */
+.react-logo {
+  top: 50%;
+  right: -80px;
+  transform: translateY(-50%);
+  animation: float3DReact 6s ease-in-out infinite;
+}
+
+@keyframes float3DReact {
+  0%, 100% { 
+    transform: translateY(-50%) translate(0, 0) rotateY(0deg) rotateX(0deg);
+  }
+  25% { 
+    transform: translateY(-50%) translate(15px, -25px) rotateY(15deg) rotateX(5deg);
+  }
+  50% { 
+    transform: translateY(-50%) translate(-10px, -40px) rotateY(-10deg) rotateX(-5deg);
+  }
+  75% { 
+    transform: translateY(-50%) translate(-20px, -15px) rotateY(10deg) rotateX(8deg);
+  }
+}
+
+.react-logo .tech-logo-3d {
+  background: linear-gradient(135deg, rgba(97, 218, 251, 0.15) 0%, rgba(97, 218, 251, 0.05) 100%);
+  border-color: rgba(97, 218, 251, 0.3);
+  box-shadow: 
+    0 8px 32px rgba(97, 218, 251, 0.2),
+    0 0 0 1px rgba(97, 218, 251, 0.1) inset;
+}
+
+.react-logo:hover .tech-logo-3d {
+  transform: scale(1.15) rotateY(15deg) rotateX(5deg);
+  box-shadow: 
+    0 12px 40px rgba(97, 218, 251, 0.3),
+    0 0 0 1px rgba(97, 218, 251, 0.2) inset;
+}
+
+/* AWS Logo - Position around avatar (top) */
+.aws-logo {
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: float3DAWS 7s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+@keyframes float3DAWS {
+  0%, 100% { 
+    transform: translateX(-50%) translate(0, 0) rotateY(0deg) rotateX(0deg);
+  }
+  33% { 
+    transform: translateX(-50%) translate(-20px, 20px) rotateY(-15deg) rotateX(-8deg);
+  }
+  66% { 
+    transform: translateX(-50%) translate(20px, 25px) rotateY(12deg) rotateX(5deg);
+  }
+}
+
+.aws-logo .tech-logo-3d {
+  background: linear-gradient(135deg, rgba(255, 153, 0, 0.15) 0%, rgba(255, 153, 0, 0.05) 100%);
+  border-color: rgba(255, 153, 0, 0.3);
+  box-shadow: 
+    0 8px 32px rgba(255, 153, 0, 0.2),
+    0 0 0 1px rgba(255, 153, 0, 0.1) inset;
+}
+
+.aws-logo:hover .tech-logo-3d {
+  transform: scale(1.15) rotateY(-15deg) rotateX(-5deg);
+  box-shadow: 
+    0 12px 40px rgba(255, 153, 0, 0.3),
+    0 0 0 1px rgba(255, 153, 0, 0.2) inset;
+}
+
+/* Node.js Logo - Position around avatar (bottom right) */
+.nodejs-logo {
+  bottom: -60px;
+  right: -60px;
+  animation: float3DNode 8s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+@keyframes float3DNode {
+  0%, 100% { 
+    transform: translate(0, 0) rotateY(0deg) rotateX(0deg);
+  }
+  25% { 
+    transform: translate(20px, -15px) rotateY(20deg) rotateX(-5deg);
+  }
+  50% { 
+    transform: translate(-15px, -25px) rotateY(-15deg) rotateX(10deg);
+  }
+  75% { 
+    transform: translate(-25px, -8px) rotateY(8deg) rotateX(-8deg);
+  }
+}
+
+.nodejs-logo .tech-logo-3d {
+  background: linear-gradient(135deg, rgba(83, 158, 67, 0.15) 0%, rgba(83, 158, 67, 0.05) 100%);
+  border-color: rgba(83, 158, 67, 0.3);
+  box-shadow: 
+    0 8px 32px rgba(83, 158, 67, 0.2),
+    0 0 0 1px rgba(83, 158, 67, 0.1) inset;
+}
+
+.nodejs-logo:hover .tech-logo-3d {
+  transform: scale(1.15) rotateY(20deg) rotateX(-8deg);
+  box-shadow: 
+    0 12px 40px rgba(83, 158, 67, 0.3),
+    0 0 0 1px rgba(83, 158, 67, 0.2) inset;
+}
+
+/* Next.js Logo - Position around avatar (left side) */
+.nextjs-logo {
+  top: 50%;
+  left: -80px;
+  transform: translateY(-50%);
+  animation: float3DNext 6.5s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+
+@keyframes float3DNext {
+  0%, 100% { 
+    transform: translateY(-50%) translate(0, 0) rotateY(0deg) rotateX(0deg);
+  }
+  30% { 
+    transform: translateY(-50%) translate(-15px, 20px) rotateY(-18deg) rotateX(6deg);
+  }
+  60% { 
+    transform: translateY(-50%) translate(20px, 25px) rotateY(15deg) rotateX(-6deg);
+  }
+}
+
+.nextjs-logo .tech-logo-3d {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.1) 100%);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.nextjs-logo:hover .tech-logo-3d {
+  transform: scale(1.15) rotateY(-20deg) rotateX(8deg);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.15) inset;
 }
 
 .profile-parent {
   display: flex;
   align-items: center;
-  color: aliceblue;
+  color: #ffffff;
+  position: relative;
+  z-index: 3;
+  max-width: 1200px;
+  width: 100%;
+  gap: 60px;
+}
+
+.profile-badge {
+  display: inline-block;
+  padding: 8px 20px;
+  background: linear-gradient(135deg, rgba(255, 88, 35, 0.2) 0%, rgba(255, 140, 90, 0.1) 100%);
+  border: 1px solid rgba(255, 88, 35, 0.3);
+  border-radius: 30px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(10px);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+.badge-text {
+  font-size: 13px;
+  font-family: "Poppins SemiBold";
+  color: #ff8c5a;
+  letter-spacing: 0.5px;
 }
 
 .profile-details-name {
-  font-size: 24px;
-  font-family: "Poppins-SemiBold";
+  font-size: 28px;
+  font-family: "Poppins Regular";
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.greeting-text {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.highlighted-text {
+  color: #ff5823;
+  font-size: 56px;
+  font-family: "Poppins SemiBold";
+  background: linear-gradient(135deg, rgba(255, 88, 35, 0.85) 0%, rgba(255, 140, 90, 0.75) 50%, rgba(255, 215, 0, 0.7) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -1px;
+  margin-top: 8px;
+  position: relative;
+  display: inline-block;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  animation: text3DGlow 4s ease-in-out infinite;
+  text-shadow: 
+    /* Glow layers - reduced intensity */
+    0 0 8px rgba(255, 88, 35, 0.3),
+    0 0 15px rgba(255, 88, 35, 0.2),
+    0 0 22px rgba(255, 88, 35, 0.15),
+    0 0 30px rgba(255, 88, 35, 0.1),
+    /* 3D depth shadow layers - reduced opacity */
+    2px 2px 0px rgba(255, 88, 35, 0.2),
+    4px 4px 0px rgba(255, 88, 35, 0.15),
+    6px 6px 0px rgba(255, 88, 35, 0.1),
+    8px 8px 0px rgba(255, 88, 35, 0.08),
+    10px 10px 0px rgba(255, 88, 35, 0.05),
+    /* Deep shadow for depth - reduced */
+    0 6px 12px rgba(0, 0, 0, 0.4),
+    0 10px 20px rgba(0, 0, 0, 0.3),
+    0 14px 28px rgba(0, 0, 0, 0.2),
+    0 18px 36px rgba(0, 0, 0, 0.15);
+  filter: drop-shadow(0 0 6px rgba(255, 88, 35, 0.4)) brightness(0.9);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  will-change: transform, filter;
+  opacity: 0.9;
+}
+
+@keyframes text3DGlow {
+  0%, 100% {
+    transform: translateZ(0px) rotateX(0deg) rotateY(0deg);
+    filter: drop-shadow(0 0 6px rgba(255, 88, 35, 0.4)) brightness(0.9) saturate(0.95);
+  }
+  25% {
+    transform: translateZ(12px) rotateX(2deg) rotateY(-1deg);
+    filter: drop-shadow(0 0 10px rgba(255, 88, 35, 0.5)) brightness(0.95) saturate(1);
+  }
+  50% {
+    transform: translateZ(18px) rotateX(0deg) rotateY(0deg);
+    filter: drop-shadow(0 0 12px rgba(255, 88, 35, 0.6)) brightness(1) saturate(1.05);
+  }
+  75% {
+    transform: translateZ(12px) rotateX(-2deg) rotateY(1deg);
+    filter: drop-shadow(0 0 10px rgba(255, 88, 35, 0.5)) brightness(0.95) saturate(1);
+  }
+}
+
+.profile-details-name:hover .highlighted-text {
+  transform: translateZ(25px) rotateX(-6deg) rotateY(2deg) scale(1.03);
+  filter: drop-shadow(0 0 15px rgba(255, 88, 35, 0.6)) brightness(1.05) saturate(1.1);
+  animation-play-state: paused;
 }
 
 .profile-details-role {
   display: flex;
   flex-direction: column;
-  margin: 14px 0 24px 0;
+  margin: 24px 0 32px 0;
+  text-align: left;
 }
 
-.profile-details-role h1 {
-  font-size: 40px;
-  font-family: cursive;
+.role-animation {
+  font-size: 42px;
+  font-family: "Poppins Bold";
+  color: #ffffff;
+  margin-bottom: 16px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
-.primary-text {
-  color: (--white);
+.profile-description {
+  font-size: 16px;
+  font-family: "Poppins Light";
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.8;
+  max-width: 600px;
+  margin-top: 12px;
 }
 
-.highlighted-text {
-  color: var(--dark-orange);
+.tech-stack-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 24px 0 32px 0;
+  justify-content: flex-start;
 }
 
-.profile-role-tagline {
-  font-size: 19px;
-  margin: 5px 0 0 0;
-  font-family: "Poppins-Light";
+.tech-badge {
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  font-size: 13px;
+  font-family: "Poppins Medium";
+  color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: default;
 }
 
-.profile-options .highlighted-btn {
-  margin: 0 0 0 28px;
+.tech-badge:hover {
+  background: rgba(255, 88, 35, 0.2);
+  border-color: rgba(255, 88, 35, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 88, 35, 0.2);
 }
 
-.profile-options .highlighted-btn:hover {
-  margin: 0 0 0 28px;
-  background-color: cornsilk;
-  color: #111;
+.profile-options {
+  display: flex;
+  gap: 16px;
+  margin: 32px 0;
+  justify-content: flex-start;
+}
+
+.modern-primary-btn {
+  padding: 12px 48px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  color: #ffffff;
+  font-family: "Poppins SemiBold";
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  backdrop-filter: blur(10px);
+  min-width: 180px;
+  height: 48px;
+  white-space: nowrap;
+}
+
+.modern-primary-btn span {
+  white-space: nowrap;
+}
+
+.modern-primary-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.modern-primary-btn i {
+  transition: transform 0.3s ease;
+  font-size: 14px;
+}
+
+.modern-primary-btn:hover i {
+  transform: translateX(4px);
+}
+
+.modern-highlighted-btn {
+  padding: 12px 48px;
+  background: linear-gradient(135deg, #ff5823 0%, #ff8c5a 100%);
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-family: "Poppins SemiBold";
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 4px 16px rgba(255, 88, 35, 0.4);
+  min-width: 180px;
+  height: 48px;
+  white-space: nowrap;
+}
+
+.modern-highlighted-btn span {
+  white-space: nowrap;
+}
+
+.modern-highlighted-btn:hover {
+  background: linear-gradient(135deg, #ff6b3d 0%, #ff9d6b 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 88, 35, 0.5);
+}
+
+.modern-highlighted-btn i {
+  transition: transform 0.3s ease;
+  font-size: 14px;
+}
+
+.modern-highlighted-btn:hover i {
+  transform: translateY(2px);
 }
 
 .profile-picture {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 1px 0px 0px var(--white);
-  border-radius: 50%;
-  height: 380px;
-  width: 380px;
+  position: relative;
+  height: 420px;
+  width: 420px;
   margin: 0 0px 0 100px;
+  aspect-ratio: 1 / 1;
+}
+
+.profile-picture-glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 88, 35, 0.3) 0%, transparent 70%);
+  filter: blur(40px);
+  animation: glowPulse 3s ease-in-out infinite;
+  z-index: -1;
+  aspect-ratio: 1 / 1;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.1); }
 }
 
 .profile-picture-background {
-  height: 92%;
-  width: 92%;
+  height: 100%;
+  width: 100%;
   background-image: url("../../../assets/Home/ng.jpg");
   background-size: cover;
   border-radius: 50%;
   background-repeat: no-repeat;
   background-position: center;
+  border: 4px solid rgba(255, 88, 35, 0.3);
+  box-shadow: 
+    0 0 0 8px rgba(255, 88, 35, 0.1),
+    0 20px 60px rgba(0, 0, 0, 0.3),
+    inset 0 0 40px rgba(255, 88, 35, 0.1);
+  transition: all 0.5s ease;
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
 }
 
 .profile-picture-background:hover {
-  transform: scale(1.07);
-  transition: 1s ease-out;
+  transform: scale(1.05);
+  border-color: rgba(255, 88, 35, 0.5);
+  box-shadow: 
+    0 0 0 8px rgba(255, 88, 35, 0.2),
+    0 30px 80px rgba(255, 88, 35, 0.3),
+    inset 0 0 60px rgba(255, 88, 35, 0.2);
+}
+
+.colz {
+  margin-top: 40px;
+}
+
+.colz-icon {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-start;
+}
+
+.colz .colz-icon a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+}
+
+.colz .colz-icon a:hover {
+  background: rgba(255, 88, 35, 0.2);
+  border-color: rgba(255, 88, 35, 0.4);
+  color: #ff5823;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(255, 88, 35, 0.3);
 }
 
 .colz .colz-icon i {
-  color: white;
-  padding: 9px;
-  padding-left: 0px;
+  font-size: 20px;
+  transition: transform 0.3s ease;
 }
 
-.colz .colz-icon i:hover {
-  transform: scale(1.5);
+.colz .colz-icon a:hover i {
+  transform: scale(1.2);
 }
 
 @media screen and (max-width: 1110px) {
   .profile-picture {
-    margin: 0 0px 0 80px;
+    margin: 0 0px 0 60px;
+    height: 360px;
+    width: 360px;
   }
-  .profile-details-name {
-    font-size: 20px;
+  .highlighted-text {
+    font-size: 48px;
   }
-  .profile-details-role .primary-text {
-    font-size: 12px;
+  .role-animation {
+    font-size: 36px;
   }
-  .profile-options .bth {
-    width: 120px;
-    padding: 11px 0;
-    z-index: 700;
+  .modern-primary-btn,
+  .modern-highlighted-btn {
+    min-width: 160px;
+    padding: 12px 40px;
   }
 }
 
@@ -111,41 +685,155 @@
   .profile-picture {
     height: 320px;
     width: 320px;
-    margin: 0 0 0 4px;
+    margin: 0 0 0 40px;
+  }
+  .highlighted-text {
+    font-size: 42px;
+  }
+  .role-animation {
+    font-size: 32px;
+  }
+  .modern-primary-btn,
+  .modern-highlighted-btn {
+    min-width: 150px;
+    padding: 12px 36px;
   }
 }
 
 @media screen and (max-width: 810px) {
+  .profile-container {
+    padding: 60px 20px;
+  }
   .profile-picture {
     margin: 0 !important;
+    height: 300px;
+    width: 300px;
   }
   .profile-parent {
     flex-direction: column-reverse;
     margin: 40px 0 0 0;
-  }
-  .profile-options {
-    display: flex;
-    justify-content: space-between;
+    gap: 40px;
   }
   .profile-details {
     margin: 25px 0 0;
+    text-align: center;
   }
-  .profile-options .highlighted-btn {
-    margin: 0 !important;
-  }
-  .profile-options,
   .profile-details-role {
     text-align: center;
+  }
+  .profile-description {
+    text-align: center;
+    margin: 16px auto;
+  }
+  .tech-stack-badges {
+    justify-content: center;
+  }
+  .profile-options {
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .colz-icon {
+    justify-content: center;
+  }
+  .highlighted-text {
+    font-size: 40px;
+  }
+  .role-animation {
+    font-size: 28px;
+    min-height: 50px;
+    justify-content: center;
+  }
+  .modern-primary-btn,
+  .modern-highlighted-btn {
+    width: 100%;
+    max-width: 280px;
+    min-width: auto;
+  }
+  
+  /* Adjust floating logos around avatar on mobile */
+  .floating-tech-logo {
+    opacity: 0.7;
+    transform: scale(0.85);
+  }
+  
+  .react-logo {
+    right: -60px;
+  }
+  
+  .aws-logo {
+    top: -50px;
+  }
+  
+  .nodejs-logo {
+    bottom: -50px;
+    right: -50px;
+  }
+  
+  .nextjs-logo {
+    left: -60px;
   }
 }
 
 @media screen and (max-width: 375px) {
   .profile-picture {
-    height: 275px;
-    width: 275px;
-    margin-top: -90px;
+    height: 260px;
+    width: 260px;
+    margin-top: -40px;
   }
   .profile-details {
-    width: 90%;
+    width: 95%;
+  }
+  .highlighted-text {
+    font-size: 36px;
+  }
+  .role-animation {
+    font-size: 24px;
+  }
+  .tech-badge {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+  .modern-primary-btn,
+  .modern-highlighted-btn {
+    padding: 12px 32px;
+    font-size: 14px;
+    width: 100%;
+    max-width: 260px;
+  }
+  
+  /* Further reduce floating logos on very small screens */
+  .floating-tech-logo {
+    opacity: 0.5;
+    transform: scale(0.75);
+  }
+  
+  .react-logo {
+    right: -50px;
+  }
+  
+  .aws-logo {
+    top: -40px;
+  }
+  
+  .nodejs-logo {
+    bottom: -40px;
+    right: -40px;
+  }
+  
+  .nextjs-logo {
+    left: -50px;
+  }
+  
+  .tech-logo-3d {
+    padding: 10px 14px;
+  }
+  
+  .tech-icon {
+    font-size: 24px;
+  }
+  
+  .tech-name {
+    font-size: 10px;
   }
 }

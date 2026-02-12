@@ -14,16 +14,16 @@ export default function AboutMe(props) {
 
   const SCREEN_CONSTSANTS = {
     description:
-      "Me is trying to become a Fullstack Engineer which is hands on in all stages of the programming cycle, from planning and design to testing and deployment. Something that I love about programming is the opportunity to work with people from a wide range of disciplines. I love challenges and learning new so I can adapt well to the needs and flexible changes of the market. ",
+      "I am a Senior Fullstack Engineer with over 6 years of hands-on experience in building scalable web applications and enterprise systems. My expertise spans the entire software development lifecycle—from architecture design and business analysis to implementation, testing, and DevOps deployment. I specialize in modern JavaScript ecosystems (React, Node.js, TypeScript) and cloud infrastructure (AWS), with a proven track record in developing core banking systems, business management platforms, and full-stack solutions. I excel at translating complex business requirements into technical solutions and leading cross-functional teams to deliver high-quality products.",
     highlights: {
       bullets: [
-        "Client-side development (Web App)",
-        "Server-side development",
-        "Containers, CI/CD, Deployment",
-        "Cloud (AWS, Azure,...)",
+        "Full-stack development (React, Node.js, TypeScript)",
+        "Enterprise architecture & system design",
+        "Business analysis & technical strategy",
+        "Cloud infrastructure & DevOps (AWS, Docker, CI/CD)",
       ],
       heading:
-        "My plan for the next 5 years is upgrade skills & experience on these new areas of expertise",
+        "Core Expertise & Technical Strengths",
     },
   };
 
@@ -70,8 +70,8 @@ export default function AboutMe(props) {
                 {" "}
                 Hire Me{" "}
               </button>
-              <a href="Nghiem_Pham.pdf" download="Nghiem_Pham.pdf">
-                <button className="btn highlighted-btn">Get Resume</button>
+              <a href="Pham_Nguyen_Thanh_Nghiem.pdf" download="Pham_Nguyen_Thanh_Nghiem.pdf">
+                <button className="btn highlighted-btn">Download CV</button>
               </a>
             </div>
           </div>

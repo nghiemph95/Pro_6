@@ -32,7 +32,9 @@
 }
 
 .about-me-description {
-  font-size: 12px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #333;
 }
 
 .about-me-highlights {
@@ -41,15 +43,17 @@
 
 .highlight-heading {
   font-family: "Poppins Bold";
-  font-size: 14px;
-  margin: 0 0 5px 0;
+  font-size: 16px;
+  margin: 0 0 15px 0;
+  color: #1f2235;
 }
 
 .highlight {
   display: flex;
   align-items: center;
-  margin: 5px 0;
-  font-size: 12px;
+  margin: 8px 0;
+  font-size: 13px;
+  color: #444;
 }
 
 .highlight-blob {

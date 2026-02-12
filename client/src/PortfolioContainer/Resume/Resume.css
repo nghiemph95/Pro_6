@@ -5,50 +5,380 @@
   justify-content: center;
   min-height: fit-content;
   margin: 120px 0;
+  background: linear-gradient(135deg, rgba(31, 34, 53, 0.02) 0%, rgba(255, 88, 35, 0.02) 100%);
+  padding: 40px 0;
 }
 
 .resume-card {
   display: flex;
-  height: 360px;
+  min-height: 650px;
   width: 1000px;
-  /* margin: 80px 0; */
+  align-items: flex-start;
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(31, 34, 53, 0.15), 0 0 0 1px rgba(255, 88, 35, 0.05);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.resume-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 80px rgba(31, 34, 53, 0.2), 0 0 0 1px rgba(255, 88, 35, 0.1);
 }
 
 .resume-bullets {
-  box-shadow: 15px 0 9px -15px #1f2235;
-  height: 100%;
+  background: linear-gradient(180deg, #1f2235 0%, #2d3142 100%);
+  min-height: 650px;
+  height: auto;
   width: 320px;
+  position: sticky;
+  top: 120px;
+  padding: 40px 20px;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .resume-bullet-details {
   flex-grow: 1;
   width: 600px;
   overflow: hidden;
-  padding: 0 0 0 80px;
+  padding: 40px 60px;
+  position: relative;
+  height: 650px;
+  background: #ffffff;
+}
+
+.resume-bullet-details .resume-screen-container:not(.work-history-container) {
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 88, 35, 0.2) transparent;
+}
+
+.resume-bullet-details .resume-screen-container:not(.work-history-container)::-webkit-scrollbar {
+  width: 6px;
+}
+
+.resume-bullet-details .resume-screen-container:not(.work-history-container)::-webkit-scrollbar-track {
+  background: rgba(31, 34, 53, 0.05);
+  border-radius: 10px;
+}
+
+.resume-bullet-details .resume-screen-container:not(.work-history-container)::-webkit-scrollbar-thumb {
+  background: rgba(255, 88, 35, 0.3);
+  border-radius: 10px;
 }
 
 .resume-description-text {
-  font-size: 12px;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.resume-cv-download {
+  margin-bottom: 32px !important;
+  padding: 20px 24px !important;
+  background: linear-gradient(135deg, #1f2235 0%, #2d3142 100%) !important;
+  border-radius: 16px !important;
+  border: 2px solid rgba(255, 88, 35, 0.3) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 16px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 88, 35, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+.resume-cv-download:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 88, 35, 0.2) !important;
+  border-color: rgba(255, 88, 35, 0.5) !important;
+}
+
+.resume-cv-download strong {
+  color: #ffffff !important;
+  display: block !important;
+  margin-bottom: 6px !important;
+  font-size: 16px !important;
+  font-family: "Poppins SemiBold" !important;
+}
+
+.resume-cv-download span {
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-size: 13px !important;
+}
+
+.resume-cv-download a {
+  padding: 12px 24px !important;
+  background: linear-gradient(135deg, #ff5823 0%, #ff8c5a 100%) !important;
+  color: #fff !important;
+  border-radius: 10px !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  box-shadow: 0 4px 12px rgba(255, 88, 35, 0.4) !important;
+  transition: all 0.3s ease !important;
+}
+
+.resume-cv-download a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 88, 35, 0.5) !important;
+  background: linear-gradient(135deg, #ff6b3d 0%, #ff9d6b 100%) !important;
+}
+
+.experience-container-scrollable {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  max-height: 600px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 16px;
+  padding-bottom: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 88, 35, 0.3) transparent;
+}
+
+.experience-container-scrollable::-webkit-scrollbar {
+  width: 8px;
+}
+
+.experience-container-scrollable::-webkit-scrollbar-track {
+  background: rgba(31, 34, 53, 0.05);
+  border-radius: 10px;
+}
+
+.experience-container-scrollable::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ff5823 0%, #ff8c5a 100%);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.experience-container-scrollable::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #ff6b3d 0%, #ff9d6b 100%);
+}
+
+.work-history-container {
+  min-height: 650px;
+  height: 650px;
+}
+
+.work-experience-item {
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(31, 34, 53, 0.1);
+  margin-bottom: 8px;
+}
+
+.work-experience-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 .experience-description {
-  margin: 10px 0 0 0;
+  margin: 16px 0 0 0;
   text-align: justify;
   max-width: 100%;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #555;
+}
+
+.experience-bullet-points {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.bullet-point {
+  position: relative;
+  padding-left: 24px;
+  padding-right: 8px;
+}
+
+.bullet-point::before {
+  content: '▸';
+  position: absolute;
+  left: 8px;
+  color: #ff5823;
+  font-weight: bold;
+  font-size: 16px;
+  top: 2px;
+}
+
+.bullet-point .resume-description-text {
+  display: block;
+  line-height: 1.8;
+  color: #555;
+}
+
+.bullet-point .resume-description-text strong {
+  color: #1f2235;
+  font-family: "Poppins SemiBold";
+  font-weight: 600;
 }
 
 .interests-description {
-  margin: 10px 0 0 0;
+  margin: 12px 0;
   text-align: justify;
   max-width: 100%;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, rgba(31, 34, 53, 0.02) 0%, rgba(255, 88, 35, 0.02) 100%);
+  border-radius: 8px;
+  border-left: 3px solid #ff5823;
+  transition: all 0.3s ease;
+}
+
+.interests-description:hover {
+  background: linear-gradient(135deg, rgba(31, 34, 53, 0.05) 0%, rgba(255, 88, 35, 0.04) 100%);
+  transform: translateX(4px);
 }
 
 .interests-description-text {
-  font-size: 15px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #555;
+}
+
+/* Certifications section */
+.certifications-container {
+  padding: 20px 0;
+}
+
+.certifications-intro {
+  margin-bottom: 24px;
+}
+
+.certifications-title {
+  font-family: "Poppins Bold";
+  font-size: 22px;
+  color: #1f2235;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.3px;
+}
+
+.certifications-subtitle {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+  font-family: "Poppins Light";
+}
+
+.certifications-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+
+.certification-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+  border: 2px solid rgba(255, 152, 0, 0.2);
+  border-radius: 16px;
+  padding: 24px;
+  transition: all 0.35s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.certification-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #ff9900 0%, #ff6600 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.certification-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 152, 0, 0.5);
+  box-shadow: 0 12px 32px rgba(255, 152, 0, 0.15);
+}
+
+.certification-card:hover::before {
+  opacity: 1;
+}
+
+.certification-card-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.certification-aws-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: linear-gradient(135deg, #ff9900 0%, #ff6600 100%);
+  border-radius: 10px;
+  color: #fff;
+  font-family: "Poppins Bold";
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.cert-aws-icon {
+  font-size: 18px;
+}
+
+.certification-name {
+  font-family: "Poppins SemiBold";
+  font-size: 16px;
+  color: #1f2235;
+  margin: 0;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.certification-issuer {
+  font-size: 13px;
+  color: #666;
+  margin: 0;
+  font-family: "Poppins Regular";
+}
+
+.certification-verify {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #ff5823;
+  font-family: "Poppins SemiBold";
+  margin-top: 4px;
+  transition: gap 0.3s ease;
+}
+
+.certification-card:hover .certification-verify {
+  gap: 10px;
+}
+
+.certification-verify i {
+  font-size: 12px;
 }
 
 .resume-details-carousal {
-  transition: transform 1s ease-out;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+}
+
+.resume-section-wrapper {
+  flex-shrink: 0;
+  width: 100%;
 }
 
 .bullet-container {
@@ -69,32 +399,86 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  background-color: #1f2235;
-  height: 40px;
-  margin: 15px 0;
-  padding: 0 8px;
-  border-radius: 20px;
-  width: 30px;
-  transition: width 0.6s ease;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  height: 50px;
+  margin: 12px 0;
+  padding: 0 16px;
+  border-radius: 12px;
+  width: 50px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.bullet::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: linear-gradient(180deg, #ff5823 0%, #ff8c5a 100%);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+}
+
+.bullet:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateX(4px);
+}
+
+.bullet:hover::before {
+  transform: scaleY(1);
+}
+
+.selected-bullet {
+  background: linear-gradient(135deg, rgba(255, 88, 35, 0.2) 0%, rgba(255, 140, 90, 0.15) 100%);
+  border-color: rgba(255, 88, 35, 0.4);
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(255, 88, 35, 0.2);
+}
+
+.selected-bullet::before {
+  transform: scaleY(1);
+}
+
+.selected-bullet .bullet-label {
+  color: #ffffff;
+  font-weight: 600;
 }
 
 .bullet-label {
   font-size: 14px;
   white-space: nowrap;
   font-family: "Poppins SemiBold";
+  color: rgba(255, 255, 255, 0.8);
+  transition: color 0.3s ease;
 }
 
 .bullet-logo {
-  height: 16px;
-  margin: 0 30px 0 0;
+  height: 20px;
+  width: 20px;
+  margin: 0 16px 0 0;
+  filter: brightness(0) invert(1);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.selected-bullet .bullet-logo {
+  opacity: 1;
+  filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(0deg);
 }
 
 .bullet-icons {
-  width: 34px;
+  width: 4px;
   height: 100%;
   z-index: 1;
-  background-color: #1f2235;
+  background: linear-gradient(180deg, rgba(255, 88, 35, 0.3) 0%, rgba(255, 88, 35, 0.1) 100%);
   position: absolute;
+  left: 0;
+  border-radius: 0 2px 2px 0;
 }
 
 .selected-bullet {
@@ -105,20 +489,56 @@
 .resume-screen-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  height: 360px;
+  justify-content: flex-start;
+  min-height: 550px;
+  height: 550px;
   width: 100%;
+  padding: 20px 0;
+  margin-bottom: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+
+.resume-screen-container.work-history-container {
+  min-height: 650px;
+  height: 650px;
 }
 
 .resume-heading {
   display: flex;
   flex-direction: column;
+  margin-bottom: 28px;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(31, 34, 53, 0.03) 0%, rgba(255, 88, 35, 0.02) 100%);
+  border-radius: 12px;
+  border-left: 4px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.resume-heading:hover {
+  background: linear-gradient(135deg, rgba(31, 34, 53, 0.05) 0%, rgba(255, 88, 35, 0.04) 100%);
+  border-left-color: #ff5823;
+  transform: translateX(4px);
+}
+
+.resume-heading:last-child {
+  margin-bottom: 0;
 }
 
 .resume-main-heading {
   position: relative;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.resume-main-heading span {
+  font-size: 18px;
+  font-family: "Poppins Bold";
+  color: #1f2235;
+  letter-spacing: -0.3px;
 }
 
 /* .resume-main-heading span {
@@ -129,67 +549,98 @@
 
 .heading-bullet {
   position: absolute;
-  left: -30px;
-  height: 15px;
-  width: 15px;
-  top: 5px;
+  left: -44px;
+  height: 12px;
+  width: 12px;
+  top: 6px;
   border-radius: 50%;
-  background-color: #ff5823;
+  background: linear-gradient(135deg, #ff5823 0%, #ff8c5a 100%);
+  box-shadow: 0 2px 8px rgba(255, 88, 35, 0.4);
+  border: 2px solid #ffffff;
 }
 
 .resume-sub-heading {
-  font-size: 14px;
+  font-size: 15px;
   font-family: "Poppins SemiBold";
-  color: var(--black);
-  margin: 10px 0 0 0;
+  color: #2d3142;
+  margin: 8px 0 12px 0;
+  letter-spacing: -0.2px;
 }
 
 .resume-heading-description {
-  font-size: 12px;
+  font-size: 14px;
   text-align: justify;
+  line-height: 1.7;
+  color: #555;
 }
 
 .heading-date {
-  background-color: var(--dark-orange);
-  padding: 4px 12px;
-  font-size: 14px;
-  border-radius: 14px;
-  color: var(--white);
+  background: linear-gradient(135deg, #ff5823 0%, #ff8c5a 100%);
+  padding: 6px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 20px;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(255, 88, 35, 0.3);
+  white-space: nowrap;
+  letter-spacing: 0.3px;
 }
 
 .skill-parent {
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 50%;
+  width: 48%;
+  margin-bottom: 24px;
+  padding: 16px;
+  background: linear-gradient(135deg, rgba(31, 34, 53, 0.02) 0%, rgba(255, 88, 35, 0.02) 100%);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.skill-parent:hover {
+  background: linear-gradient(135deg, rgba(31, 34, 53, 0.05) 0%, rgba(255, 88, 35, 0.05) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .programming-skills-container {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   flex-wrap: wrap;
+  gap: 16px;
 }
 
 .skill-percentage {
   position: relative;
-  height: 15px;
-  width: 70%;
-  background-color: #ff5823;
+  height: 8px;
+  width: 100%;
+  background: linear-gradient(90deg, rgba(255, 88, 35, 0.2) 0%, rgba(255, 140, 90, 0.2) 100%);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 8px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .skill-percentage .active-percentage-bar {
-  height: 15px;
-  transition: 0.8s ease;
+  height: 100%;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
   position: absolute;
-  background-color: #1f2235;
+  background: linear-gradient(90deg, #ff5823 0%, #ff8c5a 100%);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(255, 88, 35, 0.4);
+  left: 0;
+  top: 0;
 }
 
 .skill-parent span {
-  font-family: "Poppins Bold";
-  font-size: 16px;
-  color: #ff5823;
+  font-family: "Poppins SemiBold";
+  font-size: 15px;
+  color: #1f2235;
+  margin-bottom: 4px;
+  letter-spacing: -0.2px;
 }
 
 /* IPAD PRO RESPONSIVENESS */
@@ -199,7 +650,11 @@
   }
 
   .resume-bullet-details {
-    padding: 0 0 0 70px;
+    padding: 30px 40px;
+  }
+  
+  .skill-parent {
+    width: 48%;
   }
 }
 
@@ -221,21 +676,129 @@
     flex-direction: column;
     margin: 30px 0;
     align-items: center;
-    width: 90%;
+    width: 95%;
+    border-radius: 20px;
   }
 
   .resume-bullet-details {
-    height: 360px;
-    padding: 0;
-    width: fit-content;
-  }
-
-  .resume-bullets {
-    margin: 30px 0;
+    min-height: 500px;
+    height: auto;
+    padding: 30px 20px;
     width: 100%;
+  }
+  
+  .resume-bullets {
+    position: relative;
+    top: 0;
+    width: 100%;
+    min-height: auto;
+    padding: 30px 20px;
+    border-radius: 20px 20px 0 0;
   }
 
   .selected-bullet {
     width: 100%;
+  }
+  
+  .skill-parent {
+    width: 100%;
+  }
+  
+  .programming-skills-container {
+    flex-direction: column;
+  }
+  
+  .heading-bullet {
+    left: -24px;
+  }
+  
+  .resume-heading {
+    padding: 16px;
+  }
+}
+
+/* MOBILE RESPONSIVENESS */
+@media only screen and (max-width: 768px) {
+  .resume-container {
+    margin: 80px 0;
+    padding: 20px 0;
+  }
+  
+  .resume-card {
+    width: 98%;
+    border-radius: 16px;
+  }
+  
+  .resume-bullet-details {
+    padding: 20px 16px;
+    height: auto;
+    min-height: 500px;
+  }
+  
+  .work-history-container {
+    min-height: 500px;
+    height: auto;
+  }
+  
+  .experience-container-scrollable {
+    max-height: none;
+    overflow-y: visible;
+  }
+  
+  .resume-bullets {
+    padding: 20px 16px;
+  }
+  
+  .bullet {
+    height: 45px;
+    margin: 10px 0;
+  }
+  
+  .resume-heading {
+    padding: 14px;
+    margin-bottom: 20px;
+  }
+  
+  .resume-main-heading span {
+    font-size: 16px;
+  }
+  
+  .heading-date {
+    font-size: 11px;
+    padding: 5px 12px;
+  }
+  
+  .resume-cv-download {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .resume-cv-download a {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .work-experience-item {
+    padding-bottom: 20px;
+  }
+  
+  .bullet-point {
+    padding-left: 20px;
+  }
+  
+  .bullet-point::before {
+    left: 4px;
+  }
+  
+  .certifications-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .certification-card {
+    padding: 20px;
+  }
+  
+  .certification-name {
+    font-size: 15px;
   }
 }

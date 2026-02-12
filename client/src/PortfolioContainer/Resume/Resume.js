@@ -8,6 +8,7 @@ export default function Resume(props) {
   /* STATES */
   const [selectedBulletIndex, setSelectedBulletIndex] = useState(0);
   const [carousalOffsetStyle, setCarousalOffsetStyle] = useState({});
+  const [sectionHeights, setSectionHeights] = useState([]);
 
   let fadeInScreenHandler = (screen) => {
     if (screen.fadeInScreen !== props.id) return;
@@ -49,7 +50,23 @@ export default function Resume(props) {
     { label: "Work History", logoSrc: "work-history.svg" },
     { label: "Programming-Skills", logoSrc: "programming-skills.svg" },
     { label: "Projects", logoSrc: "projects.svg" },
+    { label: "Certifications", logoSrc: "certifications.svg" },
     { label: "Achievements", logoSrc: "interests.svg" },
+  ];
+
+  const certifications = [
+    {
+      name: "AWS Certified Solutions Architect – Associate",
+      issuer: "Amazon Web Services",
+      url: "https://www.credly.com/badges/eb14b13b-cc16-4612-9b2e-a190f5b60eeb",
+      verifyLabel: "Verify on Credly",
+    },
+    {
+      name: "AWS Certified Developer – Associate",
+      issuer: "Amazon Web Services",
+      url: "https://www.credly.com/badges/65893e39-9a2c-47b5-b0d9-8a8487dbe623",
+      verifyLabel: "Verify on Credly",
+    },
   ];
 
   //here we have
@@ -107,49 +124,178 @@ export default function Resume(props) {
     </div>,
 
     /* WORK EXPERIENCE */
-    <div className="resume-screen-container" key="work-experience">
-      <div className="experience-container">
-        <ResumeHeading
-          heading={"FREELANCE SOFTWARE DEVELOPER"}
-          subHeading={"Freelance"}
-          fromDate={"2020"}
-          toDate={"now"}
-        />
-        <div className="experience-description">
-          <span className="resume-description-text">
-            IT System Business Analysis - Risk Division Management
-          </span>
+    <div className="resume-screen-container work-history-container" key="work-experience">
+      <div className="experience-container-scrollable">
+        <div className="resume-cv-download" style={{
+          marginBottom: "32px",
+          padding: "20px 24px",
+          background: "linear-gradient(135deg, #1f2235 0%, #2d3142 100%)",
+          borderRadius: "16px",
+          border: "2px solid rgba(255, 88, 35, 0.3)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+          gap: "16px",
+        }}>
+          <div>
+            <strong style={{ color: "#fff", display: "block", marginBottom: "6px", fontSize: "16px", fontFamily: "Poppins SemiBold" }}>📄 My CV (Full resume)</strong>
+            <span style={{ color: "rgba(255,255,255,0.85)", fontSize: "13px" }}>Pham Nguyen Thanh Nghiem — PDF</span>
+          </div>
+          <a
+            href="/Pham_Nguyen_Thanh_Nghiem.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            download="Pham_Nguyen_Thanh_Nghiem.pdf"
+            style={{
+              padding: "12px 24px",
+              background: "linear-gradient(135deg, #ff5823 0%, #ff8c5a 100%)",
+              color: "#fff",
+              borderRadius: "10px",
+              textDecoration: "none",
+              fontWeight: "600",
+              fontSize: "14px",
+              boxShadow: "0 4px 12px rgba(255, 88, 35, 0.4)",
+              transition: "all 0.3s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.transform = "translateY(-2px)";
+              e.target.style.boxShadow = "0 6px 16px rgba(255, 88, 35, 0.5)";
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.transform = "translateY(0)";
+              e.target.style.boxShadow = "0 4px 12px rgba(255, 88, 35, 0.4)";
+            }}
+          >
+            View / Download CV
+          </a>
         </div>
 
-        <br />
-
-        <ResumeHeading
-          heading={"VIETCREDIT FINANCE COMPANY"}
-          subHeading={"IT Business Analyst - ICT Divison"}
-          fromDate={"2021"}
-          toDate={"now"}
-        />
-        <div className="experience-description">
-          <span className="resume-description-text">
-            Technical Business Analysis for all Technical Innovation Strategy at
-            Business Analysis Department
-          </span>
+        <div className="work-experience-item">
+          <ResumeHeading
+            heading={"Fullstack Engineer / Project Lead"}
+            subHeading={"Xolv Technology Solutions, Inc"}
+            fromDate={"Jan 2025"}
+            toDate={"Present"}
+          />
+          <div className="experience-description">
+            <div className="experience-bullet-points">
+              <div className="bullet-point">
+                <span className="resume-description-text">
+                  <strong>FAS (Funder Agnostic Solution):</strong> Led end-to-end development of client intake platform from greenfield to production. Designed event-driven architecture using NestJS, GraphQL, AWS Lambda, SQS, SNS, EventBridge, ECS/Fargate, RDS, DynamoDB. Delivered production-ready MVP in 3 months enabling immediate revenue generation.
+                </span>
+              </div>
+              <div className="bullet-point">
+                <span className="resume-description-text">
+                  <strong>myBrightlink:</strong> Developed healthcare web app using ReactJS, Zustand, TypeScript, AWS S3, SQS, RDS. Implemented asynchronous workflows with DLQ, HIPAA-compliant authentication (Azure AD B2C), and comprehensive observability (Datadog, Sentry).
+                </span>
+              </div>
+              <div className="bullet-point">
+                <span className="resume-description-text">
+                  <strong>Admin Center:</strong> Built internal admin portal with Azure AD B2C, role-based access control. Containerized Next.js app with Docker, deployed to Kubernetes via GitLab CI/CD with Helm charts. Implemented type-safe API integration with OpenAPI-generated TypeScript clients.
+                </span>
+              </div>
+              <div className="bullet-point">
+                <span className="resume-description-text">
+                  <strong>Wabistro:</strong> Developed AI-powered restaurant discovery platform using Flutter, Ionic React, Capacitor. Integrated Google Generative AI and OpenAI APIs for menu detection and nutrition analysis. Built serverless backend with Firebase.
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <br />
+        <div className="work-experience-item">
+          <ResumeHeading
+            heading={"Fullstack Engineer"}
+            subHeading={"Transcosmos Technology Vietnam"}
+            fromDate={"Apr 2023"}
+            toDate={"Dec 2024"}
+          />
+          <div className="experience-description">
+            <div className="experience-bullet-points">
+              <div className="bullet-point">
+                <span className="resume-description-text">
+                  <strong>t-passport (SSO Platform):</strong> Developed Single Sign-On solution with Microsoft ADFS, OAuth SSO integration. Released passwordless authentication via QR code scanning. Built drag-drop dashboard for SSO sign-in preferences. Deployed using AWS Amplify.
+                </span>
+              </div>
+              <div className="bullet-point">
+                <span className="resume-description-text">
+                  <strong>LM (Log Management):</strong> Designed serverless log ingestion pipelines using AWS S3, Lambda, EventBridge, KMS, CloudFormation. Processed log data with JavaScript/Python, automated infrastructure via IaC.
+                </span>
+              </div>
+              <div className="bullet-point">
+                <span className="resume-description-text">
+                  <strong>t-intelligate (AI Platform):</strong> Integrated multiple LLM providers (ChatGPT, Azure OpenAI, Gemini, AWS AI). Built frontend features with ReactJS, ViteJS. Handled user permissions via AWS Cognito User Pool.
+                </span>
+              </div>
+              <div className="bullet-point">
+                <span className="resume-description-text">
+                  <strong>Email Management & Other Systems:</strong> Built event-driven email processing (S3, SQS, SNS, Lambda, DynamoDB), ticket management with ClickUp Webhook integration, and token management systems using VueJS and AWS Cognito.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        <ResumeHeading
-          heading={"SHINHAN DS VIETNAM"}
-          subHeading={"Software Developer - ICT Divison"}
-          fromDate={"2018"}
-          toDate={"2021"}
-        />
-        <div className="experience-description">
-          <span className="resume-description-text">
-            - Developed an system for client/server with the dashboard for
-            managing the business products, managing reviews, users, payment,
-            common, deposit, loan, etc. .
-          </span>
+        <div className="work-experience-item">
+          <ResumeHeading
+            heading={"Backend Engineer"}
+            subHeading={"VietCredit Finance Company"}
+            fromDate={"Dec 2021"}
+            toDate={"Apr 2023"}
+          />
+          <div className="experience-description">
+            <div className="experience-bullet-points">
+              <div className="bullet-point">
+                <span className="resume-description-text">
+                  <strong>FASMO (Fast Money):</strong> Implemented backend business logic for mobile lending platform integrated with MoMo e-wallet using NodeJS and MS SQL. Processed user data and enforced lending rules for high-traffic financial product with real-money transactions.
+                </span>
+              </div>
+              <div className="bullet-point">
+                <span className="resume-description-text">
+                  <strong>Financial Internal Management System:</strong> Developed backend APIs and frontend features using ReactJS for financial operations, reporting, and payroll. Refactored existing logic to improve performance and maintainability.
+                </span>
+              </div>
+              <div className="bullet-point">
+                <span className="resume-description-text">
+                  <strong>Repayment Fee System:</strong> Built APIs for managing loan repayment schedules and fees. Ensured data accuracy across the loan lifecycle, improving correctness and reliability of repayment calculations.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="work-experience-item">
+          <ResumeHeading
+            heading={"Project Lead / Core Banking Developer"}
+            subHeading={"Shinhan DS Vietnam"}
+            fromDate={"Jul 2018"}
+            toDate={"Dec 2021"}
+          />
+          <div className="experience-description">
+            <div className="experience-bullet-points">
+              <div className="bullet-point">
+                <span className="resume-description-text">
+                  <strong>Aither System (Core Banking):</strong> Led development of Core Banking systems supporting customer, account, tax, and fee management. Developed microservices, designed database schemas and UI screens using Oracle SQL, C, Java.
+                </span>
+              </div>
+              <div className="bullet-point">
+                <span className="resume-description-text">
+                  Built High-Priority Customer Management system based on Top Club scoring, enabling banks to identify VIP customers. Implemented accurate customer-sales assignment logic preventing conflicts across teams.
+                </span>
+              </div>
+              <div className="bullet-point">
+                <span className="resume-description-text">
+                  Developed integrated customer information platform consolidating data across multiple banking systems. Implemented Exchange Rate calculation system for foreign currency exchange and international payroll.
+                </span>
+              </div>
+              <div className="bullet-point">
+                <span className="resume-description-text">
+                  Refactored business logic to comply with Vietnam State Bank regulations. Improved maintainability and stability of legacy systems through systematic refactoring, documentation, and process standardization.
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>,
@@ -181,11 +327,42 @@ export default function Resume(props) {
           heading={projectsDetails.title}
           subHeading={projectsDetails.subHeading}
           description={projectsDetails.description}
-          h
           fromDate={projectsDetails.duration.fromDate}
           toDate={projectsDetails.duration.toDate}
         />
       ))}
+    </div>,
+
+    /* CERTIFICATIONS */
+    <div className="resume-screen-container certifications-container" key="certifications">
+      <div className="certifications-intro">
+        <h3 className="certifications-title">AWS Certifications</h3>
+        <p className="certifications-subtitle">Verified credentials — click to view on Credly</p>
+      </div>
+      <div className="certifications-grid">
+        {certifications.map((cert, index) => (
+          <a
+            key={index}
+            href={cert.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="certification-card"
+          >
+            <div className="certification-card-inner">
+              <div className="certification-aws-badge">
+                <span className="cert-aws-icon">☁</span>
+                <span className="cert-aws-text">AWS</span>
+              </div>
+              <h4 className="certification-name">{cert.name}</h4>
+              <p className="certification-issuer">{cert.issuer}</p>
+              <span className="certification-verify">
+                {cert.verifyLabel}
+                <i className="fa fa-external-link" aria-hidden="true"></i>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
     </div>,
 
     /* Achievements */
@@ -219,9 +396,21 @@ export default function Resume(props) {
   ];
 
   const handleCarousal = (index) => {
-    let offsetHeight = 360;
+    // Calculate cumulative offset based on previous sections
+    let offset = 0;
+    const baseHeight = 550; // Base height per section
+    
+    for (let i = 0; i < index; i++) {
+      // Use section heights if available, otherwise use default base height
+      if (sectionHeights[i] && sectionHeights[i] > 0) {
+        offset += sectionHeights[i];
+      } else {
+        offset += baseHeight;
+      }
+    }
+    
     let newCarousalOffset = {
-      style: { transform: "translateY(" + index * offsetHeight * -1 + "px)" },
+      style: { transform: "translateY(" + offset * -1 + "px)" },
     };
     setCarousalOffsetStyle(newCarousalOffset);
     setSelectedBulletIndex(index);
@@ -253,15 +442,48 @@ export default function Resume(props) {
         style={carousalOffsetStyle.style}
         className="resume-details-carousal"
       >
-        {resumeDetails.map((ResumeDetail) => ResumeDetail)}
+        {resumeDetails.map((ResumeDetail, idx) => (
+          <div 
+            key={idx} 
+            className="resume-section-wrapper"
+            style={{ 
+              minHeight: '550px', 
+              display: 'flex', 
+              flexDirection: 'column',
+              width: '100%',
+              boxSizing: 'border-box'
+            }}
+          >
+            {ResumeDetail}
+          </div>
+        ))}
       </div>
     );
   };
 
   useEffect(() => {
+    // Calculate actual heights of each section after render
+    const calculateHeights = () => {
+      const carousal = document.querySelector('.resume-details-carousal');
+      if (carousal) {
+        const sections = carousal.children;
+        const heights = Array.from(sections).map(section => {
+          return section.offsetHeight || 500;
+        });
+        setSectionHeights(heights);
+      }
+    };
+
+    // Calculate heights after initial render
+    setTimeout(calculateHeights, 100);
+    
+    // Recalculate on window resize
+    window.addEventListener('resize', calculateHeights);
+
     return () => {
       /* UNSUBSCRIBE THE SUBSCRIPTIONS */
       fadeInSubscription.unsubscribe();
+      window.removeEventListener('resize', calculateHeights);
     };
   }, [fadeInSubscription]);
 

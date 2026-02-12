@@ -20,51 +20,100 @@ export default function ContactMe(props) {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [company, setCompany] = useState("");
+  const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
+  const [jdFile, setJdFile] = useState(null);
+  const [fileName, setFileName] = useState("");
   const [banner, setBanner] = useState("");
   const [bool, setBool] = useState(false);
 
-  const handleName = (e) => {
-    setName(e.target.value);
+  const handleName = (e) => setName(e.target.value);
+  const handleEmail = (e) => setEmail(e.target.value);
+  const handleCompany = (e) => setCompany(e.target.value);
+  const handlePhone = (e) => setPhone(e.target.value);
+  const handleMessage = (e) => setMessage(e.target.value);
+  
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // Validate file type
+      const allowedTypes = ['application/pdf', 'application/msword', 
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+      const fileExtension = file.name.split('.').pop().toLowerCase();
+      
+      if (!allowedTypes.includes(file.type) && !['pdf', 'doc', 'docx'].includes(fileExtension)) {
+        toast.error("Only PDF, DOC, and DOCX files are allowed");
+        e.target.value = '';
+        return;
+      }
+      
+      // Validate file size (10MB)
+      if (file.size > 10 * 1024 * 1024) {
+        toast.error("File size must be less than 10MB");
+        e.target.value = '';
+        return;
+      }
+      
+      setJdFile(file);
+      setFileName(file.name);
+    }
   };
-
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handleMessage = (e) => {
-    setMessage(e.target.value);
-  };
-
-  console.log(name);
 
   const submitForm = async (e) => {
     e.preventDefault();
-    try {
-      let data = {
-        name,
-        email,
-        message,
-      };
-      setBool(true);
-      const res = await axios.post(`/contact`, data);
-      if (name.length === 0 || email.length === 0 || message.length === 0) {
-        setBanner(res.data.msg);
-        toast.error(res.data.msg);
-        setBool(false);
-      } else {
-        if (res.status === 200) {
-          setBanner(res.data.msg);
-          toast.success(res.data.msg);
-          setBool(false);
+    
+    // Client-side validation
+    if (name.trim().length === 0 || email.trim().length === 0 || message.trim().length === 0) {
+      setBanner("Please Fill All The Fields!");
+      toast.error("Please Fill All The Fields!");
+      return;
+    }
 
-          setName("");
-          setEmail("");
-          setMessage("");
-        }
+    try {
+      // Create FormData to support file upload
+      const formData = new FormData();
+      formData.append("name", name.trim());
+      formData.append("email", email.trim());
+      formData.append("company", company.trim());
+      formData.append("phone", phone.trim());
+      formData.append("message", message.trim());
+      
+      // Append file if selected
+      if (jdFile) {
+        formData.append("jdFile", jdFile);
+      }
+      
+      setBool(true);
+      setBanner("");
+      
+      const res = await axios.post(`/contact`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      
+      if (res.status === 200) {
+        setBanner(res.data.msg);
+        toast.success(res.data.msg);
+        setName("");
+        setEmail("");
+        setCompany("");
+        setPhone("");
+        setMessage("");
+        setJdFile(null);
+        setFileName("");
+        // Reset file input
+        const fileInput = document.querySelector('input[type="file"]');
+        if (fileInput) fileInput.value = '';
       }
     } catch (error) {
-      console.log(error);
+      console.error("Error submitting form:", error);
+      const errorMessage = error.response?.data?.msg || "Failed to send message. Please try again later.";
+      setBanner(errorMessage);
+      toast.error(errorMessage);
+    } finally {
+      setBool(false);
     }
   };
 
@@ -101,14 +150,52 @@ export default function ContactMe(props) {
           </div>
           <form onSubmit={submitForm}>
             <p>{banner}</p>
-            <label htmlFor="name">Name</label>
-            <input type="text" onChange={handleName} value={name} />
+            <label htmlFor="name">Name *</label>
+            <input type="text" onChange={handleName} value={name} placeholder="Your name" />
 
-            <label htmlFor="email">Email</label>
-            <input type="email" onChange={handleEmail} value={email} />
+            <label htmlFor="email">Email *</label>
+            <input type="email" onChange={handleEmail} value={email} placeholder="your@email.com" />
 
-            <label htmlFor="message">Message</label>
-            <textarea type="text" onChange={handleMessage} value={message} />
+            <label htmlFor="company">Company</label>
+            <input type="text" onChange={handleCompany} value={company} placeholder="Company name (optional)" />
+
+            <label htmlFor="phone">Phone</label>
+            <input type="tel" onChange={handlePhone} value={phone} placeholder="Phone (optional)" />
+
+            <label htmlFor="message">Message *</label>
+            <textarea onChange={handleMessage} value={message} placeholder="Your message..." rows={4} />
+
+            <label htmlFor="jdFile">Job Description (PDF/DOC/DOCX)</label>
+            <div style={{ position: "relative" }}>
+              <input
+                type="file"
+                id="jdFile"
+                onChange={handleFileChange}
+                accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                style={{
+                  width: "100%",
+                  padding: "0.5rem",
+                  fontSize: "1rem",
+                  marginBottom: "22px",
+                  border: "2px solid rgba(0, 0, 0, 0)",
+                  outline: "none",
+                  backgroundColor: "rgba(230, 230, 230, 0.6)",
+                  borderRadius: "10px",
+                  cursor: "pointer",
+                }}
+              />
+              {fileName && (
+                <p style={{ 
+                  marginTop: "-18px", 
+                  marginBottom: "22px", 
+                  fontSize: "0.9rem", 
+                  color: "#666",
+                  fontStyle: "italic"
+                }}>
+                  📎 Selected: {fileName}
+                </p>
+              )}
+            </div>
 
             <div className="send-btn">
               <button type="submit">

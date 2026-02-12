@@ -57,7 +57,7 @@ export default function Testimonial(props) {
     <div>
       <ScreenHeading
         title={"Testimonial"}
-        subHeading={"What My Client Say About Me"}
+        subHeading={"What Colleagues & Leaders Say About My Work"}
       />
       <section className="testimonial-section fade-in" id={props.id || ""}>
         <div className="container">
@@ -73,9 +73,7 @@ export default function Testimonial(props) {
                   <div className="testi-comment">
                     <p>
                       <i className="fa fa-quote-left" />
-                      I patronized ShinhanDS Vietnam, when he delivered, I
-                      honestly fell in love with the project as he is a very
-                      honest guy and elivers ontime.
+                      Nghiem takes full ownership of delivery and drives outcomes. He aligns well with stakeholders and consistently delivers on commitments. A reliable senior engineer I can trust with critical projects.
                       <i className="fa fa-quote-right" />
                     </p>
                     <ul className="stars list-unstyled">
@@ -114,9 +112,7 @@ export default function Testimonial(props) {
                   <div className="testi-comment">
                     <p>
                       <i className="fa fa-quote-left" />
-                      It was nice hiring this guy for my e-commerce project.He
-                      delivered even more than i can imagine. I recommend him
-                      for you.
+                      Strong in system design and clean architecture. Nghiem brings clarity to complex requirements and collaborates effectively with both tech and business. I recommend him for senior and lead roles.
                       <i className="fa fa-quote-right" />
                     </p>
                     <ul className="stars list-unstyled">
@@ -152,9 +148,7 @@ export default function Testimonial(props) {
                   <div className="testi-comment">
                     <p>
                       <i className="fa fa-quote-left" />
-                      When he delivered my job, my head spinned, it was so nice
-                      and he implemented every functionality I requested for.
-                      Thank you.
+                      He delivers end-to-end solutions with high quality and often goes beyond the initial scope. His full-stack and cloud experience made a real difference on our projects. Thank you.
                       <i className="fa fa-quote-right" />
                     </p>
                     <ul className="stars list-unstyled">
@@ -183,16 +177,14 @@ export default function Testimonial(props) {
                 </div>
               </div>
 
-              {/** GK */}
+              {/** Giang */}
 
               <div className="col-lg-12">
                 <div className="testi-item">
                   <div className="testi-comment">
                     <p>
                       <i className="fa fa-quote-left" />
-                      This guy is incredibly awesome, I hired him and when He
-                      delivered, I honestly fell in love with the project. He is
-                      indeed a great guy.
+                      A solid senior engineer with strong technical depth. Nghiem writes maintainable code, follows best practices, and is someone I’d want on any complex full-stack or cloud initiative.
                       <i className="fa fa-quote-right" />
                     </p>
                     <ul className="stars list-unstyled">
@@ -228,9 +220,7 @@ export default function Testimonial(props) {
                   <div className="testi-comment">
                     <p>
                       <i className="fa fa-quote-left" />
-                      He is always dynamic and has a lot of ideas when we work
-                      together. He is a man and I learned a lot from him in his
-                      work, life and attitude.
+                      Dynamic and full of ideas. Working with Nghiem helped me level up—he shares knowledge, explains trade-offs clearly, and brings a positive attitude. A great senior to have on the team.
                       <i className="fa fa-quote-right" />
                     </p>
                     <ul className="stars list-unstyled">
@@ -259,15 +249,14 @@ export default function Testimonial(props) {
                 </div>
               </div>
 
-              {/** GK */}
+              {/** Hoang */}
 
               <div className="col-lg-12">
                 <div className="testi-item">
                   <div className="testi-comment">
                     <p>
                       <i className="fa fa-quote-left" />
-                      That awesome when I hired him and when He co-work with me.
-                      He is indeed a great guy and warmup.
+                      Excellent cross-functional partner. Nghiem translates business needs into technical solutions and works smoothly with BA and stakeholders. A senior engineer who makes collaboration easy.
                       <i className="fa fa-quote-right" />
                     </p>
                     <ul className="stars list-unstyled">
