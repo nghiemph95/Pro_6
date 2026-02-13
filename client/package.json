@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": ">=20",
+    "node": "20.x",
     "npm": ">=10"
   },
   "dependencies": {
@@ -30,6 +30,7 @@
   "scripts": {
     "start": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
     "build": "NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
+    "postinstall": "npx update-browserslist-db@latest --yes || true",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
