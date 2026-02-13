@@ -19,6 +19,7 @@ export default function ContactMe(props) {
     const fadeInSubscription =
       ScrollService.currentScreenFadeIn.subscribe(fadeInScreenHandler);
     return () => fadeInSubscription.unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.id]);
 
   const [name, setName] = useState("");
@@ -36,28 +37,34 @@ export default function ContactMe(props) {
   const handleCompany = (e) => setCompany(e.target.value);
   const handlePhone = (e) => setPhone(e.target.value);
   const handleMessage = (e) => setMessage(e.target.value);
-  
+
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       // Validate file type
-      const allowedTypes = ['application/pdf', 'application/msword', 
-        'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
-      const fileExtension = file.name.split('.').pop().toLowerCase();
-      
-      if (!allowedTypes.includes(file.type) && !['pdf', 'doc', 'docx'].includes(fileExtension)) {
+      const allowedTypes = [
+        "application/pdf",
+        "application/msword",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      ];
+      const fileExtension = file.name.split(".").pop().toLowerCase();
+
+      if (
+        !allowedTypes.includes(file.type) &&
+        !["pdf", "doc", "docx"].includes(fileExtension)
+      ) {
         toast.error("Only PDF, DOC, and DOCX files are allowed");
-        e.target.value = '';
+        e.target.value = "";
         return;
       }
-      
+
       // Validate file size (10MB)
       if (file.size > 10 * 1024 * 1024) {
         toast.error("File size must be less than 10MB");
-        e.target.value = '';
+        e.target.value = "";
         return;
       }
-      
+
       setJdFile(file);
       setFileName(file.name);
     }
@@ -65,9 +72,13 @@ export default function ContactMe(props) {
 
   const submitForm = async (e) => {
     e.preventDefault();
-    
+
     // Client-side validation
-    if (name.trim().length === 0 || email.trim().length === 0 || message.trim().length === 0) {
+    if (
+      name.trim().length === 0 ||
+      email.trim().length === 0 ||
+      message.trim().length === 0
+    ) {
       setBanner("Please Fill All The Fields!");
       toast.error("Please Fill All The Fields!");
       return;
@@ -81,22 +92,22 @@ export default function ContactMe(props) {
       formData.append("company", company.trim());
       formData.append("phone", phone.trim());
       formData.append("message", message.trim());
-      
+
       // Append file if selected
       if (jdFile) {
         formData.append("jdFile", jdFile);
       }
-      
+
       setBool(true);
       setBanner("");
-      
+
       const apiBase = process.env.REACT_APP_API_URL || "";
       const res = await axios.post(`${apiBase}/contact`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      
+
       if (res.status === 200) {
         setBanner(res.data.msg);
         toast.success(res.data.msg);
@@ -109,11 +120,13 @@ export default function ContactMe(props) {
         setFileName("");
         // Reset file input
         const fileInput = document.querySelector('input[type="file"]');
-        if (fileInput) fileInput.value = '';
+        if (fileInput) fileInput.value = "";
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      const errorMessage = error.response?.data?.msg || "Failed to send message. Please try again later.";
+      const errorMessage =
+        error.response?.data?.msg ||
+        "Failed to send message. Please try again later.";
       setBanner(errorMessage);
       toast.error(errorMessage);
     } finally {
@@ -155,19 +168,44 @@ export default function ContactMe(props) {
           <form onSubmit={submitForm}>
             <p>{banner}</p>
             <label htmlFor="name">Name *</label>
-            <input type="text" onChange={handleName} value={name} placeholder="Your name" />
+            <input
+              type="text"
+              onChange={handleName}
+              value={name}
+              placeholder="Your name"
+            />
 
             <label htmlFor="email">Email *</label>
-            <input type="email" onChange={handleEmail} value={email} placeholder="your@email.com" />
+            <input
+              type="email"
+              onChange={handleEmail}
+              value={email}
+              placeholder="your@email.com"
+            />
 
             <label htmlFor="company">Company</label>
-            <input type="text" onChange={handleCompany} value={company} placeholder="Company name (optional)" />
+            <input
+              type="text"
+              onChange={handleCompany}
+              value={company}
+              placeholder="Company name (optional)"
+            />
 
             <label htmlFor="phone">Phone</label>
-            <input type="tel" onChange={handlePhone} value={phone} placeholder="Phone (optional)" />
+            <input
+              type="tel"
+              onChange={handlePhone}
+              value={phone}
+              placeholder="Phone (optional)"
+            />
 
             <label htmlFor="message">Message *</label>
-            <textarea onChange={handleMessage} value={message} placeholder="Your message..." rows={4} />
+            <textarea
+              onChange={handleMessage}
+              value={message}
+              placeholder="Your message..."
+              rows={4}
+            />
 
             <label htmlFor="jdFile">Job Description (PDF/DOC/DOCX)</label>
             <div style={{ position: "relative" }}>
@@ -189,13 +227,15 @@ export default function ContactMe(props) {
                 }}
               />
               {fileName && (
-                <p style={{ 
-                  marginTop: "-18px", 
-                  marginBottom: "22px", 
-                  fontSize: "0.9rem", 
-                  color: "#666",
-                  fontStyle: "italic"
-                }}>
+                <p
+                  style={{
+                    marginTop: "-18px",
+                    marginBottom: "22px",
+                    fontSize: "0.9rem",
+                    color: "#666",
+                    fontStyle: "italic",
+                  }}
+                >
                   📎 Selected: {fileName}
                 </p>
               )}
