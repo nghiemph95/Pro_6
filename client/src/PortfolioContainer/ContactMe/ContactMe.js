@@ -123,9 +123,18 @@ export default function ContactMe(props) {
         if (fileInput) fileInput.value = "";
       }
     } catch (error) {
+      // Log chi tiết để debug (response từ server, network error, v.v.)
       console.error("Error submitting form:", error);
+      console.error("Error details:", {
+        message: error.message,
+        responseStatus: error.response?.status,
+        responseData: error.response?.data,
+        code: error.code,
+      });
       const errorMessage =
         error.response?.data?.msg ||
+        error.response?.data?.error ||
+        error.message ||
         "Failed to send message. Please try again later.";
       setBanner(errorMessage);
       toast.error(errorMessage);
