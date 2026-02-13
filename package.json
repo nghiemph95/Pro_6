@@ -23,6 +23,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "node-dev server.js",
     "server-prod": "node server.js",
-    "client": "cd client/ && yarn start"
+    "client": "cd client/ && yarn start",
+    "kill-port": "bash scripts/kill-port.sh 5001"
   }
 }

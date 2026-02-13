@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -15,8 +15,11 @@ export default function ContactMe(props) {
     Animations.animations.fadeInScreen(props.id);
   };
 
-  const fadeInSubscription =
-    ScrollService.currentScreenFadeIn.subscribe(fadeInScreenHandler);
+  useEffect(() => {
+    const fadeInSubscription =
+      ScrollService.currentScreenFadeIn.subscribe(fadeInScreenHandler);
+    return () => fadeInSubscription.unsubscribe();
+  }, [props.id]);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -147,7 +150,7 @@ export default function ContactMe(props) {
         <div className="back-form">
           <div className="img-back">
             <h4>Send Your Email Here!</h4>
-            <img src={imgBack} alt="image not found" />
+            <img src={imgBack} alt="Contact form background" />
           </div>
           <form onSubmit={submitForm}>
             <p>{banner}</p>
@@ -205,7 +208,7 @@ export default function ContactMe(props) {
                 {/** if the bool = true => show Loading Bar*/}
                 {bool ? (
                   <b className="load">
-                    <img src={loading} alt="image not responding" />
+                    <img src={loading} alt="Loading" />
                   </b>
                 ) : (
                   ""
