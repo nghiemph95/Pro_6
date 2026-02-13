@@ -87,7 +87,8 @@ export default function ContactMe(props) {
       setBool(true);
       setBanner("");
       
-      const res = await axios.post(`/contact`, formData, {
+      const apiBase = process.env.REACT_APP_API_URL || "";
+      const res = await axios.post(`${apiBase}/contact`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
