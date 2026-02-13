@@ -30,20 +30,33 @@ const ALLOWED_MIMES = [
 const ALLOWED_EXT = /\.(pdf|doc|docx)$/i;
 
 async function handler(req, res) {
+  console.log("=== Contact API Handler Started ===");
+  console.log("Request method:", req.method);
+  console.log("Request headers:", {
+    "content-type": req.headers["content-type"],
+    "content-length": req.headers["content-length"],
+  });
+
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
   if (req.method === "OPTIONS") {
+    console.log("OPTIONS request - returning 200");
     return res.status(200).end();
   }
 
   if (req.method !== "POST") {
+    console.log("Non-POST request - returning 405");
     return res.status(405).json({ msg: "Method Not Allowed" });
   }
 
   try {
+    console.log("Starting form parse...");
     const { fields, files } = await parseForm(req);
+    console.log("Form parsed successfully");
+    console.log("Fields keys:", Object.keys(fields || {}));
+    console.log("Files keys:", Object.keys(files || {}));
     const data = {
       name: (fields.name && fields.name[0]) || "",
       email: (fields.email && fields.email[0]) || "",
@@ -52,40 +65,82 @@ async function handler(req, res) {
       message: (fields.message && fields.message[0]) || "",
     };
 
+    console.log("Form data extracted:", {
+      name: data.name ? `${data.name.substring(0, 5)}...` : "empty",
+      email: data.email ? `${data.email.substring(0, 5)}...` : "empty",
+      company: data.company || "empty",
+      phone: data.phone || "empty",
+      messageLength: data.message.length,
+    });
+
     if (
       !data.name.trim() ||
       !data.email.trim() ||
       !data.message.trim()
     ) {
+      console.log("Validation failed - missing required fields");
       return res.status(400).json({ msg: "Please Fill All The Fields!" });
     }
+
+    // Check environment variables
+    console.log("Checking environment variables...");
+    console.log("EMAIL_USER exists:", !!process.env.EMAIL_USER);
+    console.log("EMAIL_PASS exists:", !!process.env.EMAIL_PASS);
+    console.log("EMAIL_USER length:", process.env.EMAIL_USER?.length || 0);
+    console.log("EMAIL_PASS length:", process.env.EMAIL_PASS?.length || 0);
+    console.log("EMAIL_USER preview:", process.env.EMAIL_USER ? `${process.env.EMAIL_USER.substring(0, 5)}...` : "N/A");
+    console.log("All env keys containing 'EMAIL':", Object.keys(process.env).filter(k => k.includes("EMAIL")));
 
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
       console.error("Email credentials not configured");
       return res.status(500).json({
         msg: "Email service is not configured. Please contact the administrator.",
+        debug: {
+          hasEmailUser: !!process.env.EMAIL_USER,
+          hasEmailPass: !!process.env.EMAIL_PASS,
+        },
       });
     }
 
     let uploadedFile = null;
     const fileList = files.jdFile ? (Array.isArray(files.jdFile) ? files.jdFile : [files.jdFile]) : [];
     const firstFile = fileList[0];
+    console.log("File check:", {
+      hasJdFile: !!files.jdFile,
+      fileListLength: fileList.length,
+      firstFileExists: !!firstFile,
+    });
+
     if (firstFile && (firstFile.filepath || firstFile.path)) {
       const f = firstFile;
       const filepath = f.filepath || f.path;
       const ext = (f.originalFilename || f.name || "").toLowerCase();
       const mime = f.mimetype || f.type || "";
+      console.log("File details:", {
+        filename: f.originalFilename || f.name,
+        ext,
+        mime,
+        size: f.size,
+        filepath: filepath ? "exists" : "missing",
+      });
+
       if (!ALLOWED_EXT.test(ext) || (!ALLOWED_MIMES.includes(mime) && mime !== "")) {
+        console.log("File validation failed - invalid type");
         return res.status(400).json({
           msg: "Only PDF, DOC, and DOCX files are allowed for Job Description",
         });
       }
       if (f.size > 10 * 1024 * 1024) {
+        console.log("File validation failed - too large");
         return res.status(400).json({ msg: "File size too large. Maximum size is 10MB." });
       }
       uploadedFile = { ...f, filepath: filepath };
+      console.log("File validated successfully");
+    } else {
+      console.log("No file uploaded");
     }
 
+    console.log("Creating nodemailer transporter...");
     const transporter = nodemailer.createTransport({
       service: "Gmail",
       host: "smtp.gmail.com",
@@ -97,7 +152,18 @@ async function handler(req, res) {
       },
     });
 
-    await transporter.verify();
+    console.log("Verifying SMTP connection...");
+    try {
+      await transporter.verify();
+      console.log("SMTP verification successful");
+    } catch (verifyErr) {
+      console.error("SMTP verification failed:", {
+        code: verifyErr.code,
+        message: verifyErr.message,
+        command: verifyErr.command,
+      });
+      throw verifyErr;
+    }
 
     const companyPart = data.company.trim() ? ` - ${data.company.trim()}` : "";
     const subject = `[Portfolio] ${data.name}${companyPart}`;
@@ -138,6 +204,11 @@ async function handler(req, res) {
 
     if (uploadedFile && (uploadedFile.filepath || uploadedFile.path)) {
       const filePath = uploadedFile.filepath || uploadedFile.path;
+      console.log("Adding file attachment:", {
+        filename: uploadedFile.originalFilename || uploadedFile.name,
+        filePath,
+        fileExists: fs.existsSync(filePath),
+      });
       mailOptions.attachments = [
         {
           filename: uploadedFile.originalFilename || uploadedFile.name || "attachment",
@@ -146,7 +217,19 @@ async function handler(req, res) {
       ];
     }
 
-    await transporter.sendMail(mailOptions);
+    console.log("Sending email...");
+    console.log("Mail options:", {
+      from: mailOptions.from,
+      to: mailOptions.to,
+      subject: mailOptions.subject,
+      hasAttachments: !!mailOptions.attachments,
+    });
+
+    const sendResult = await transporter.sendMail(mailOptions);
+    console.log("Email sent successfully:", {
+      messageId: sendResult.messageId,
+      response: sendResult.response,
+    });
 
     const tmpPath = uploadedFile && (uploadedFile.filepath || uploadedFile.path);
     if (tmpPath && fs.existsSync(tmpPath)) {
@@ -159,12 +242,25 @@ async function handler(req, res) {
 
     return res.status(200).json({ msg: successMsg });
   } catch (error) {
-    console.error("Error sending email:", error);
+    console.error("=== ERROR IN CONTACT API ===");
+    console.error("Error name:", error.name);
+    console.error("Error message:", error.message);
+    console.error("Error code:", error.code);
+    console.error("Error stack:", error.stack);
+    console.error("Full error object:", JSON.stringify(error, Object.getOwnPropertyNames(error)));
+
     if (error.code === "EAUTH") {
-      return res.status(500).json({ msg: "Email authentication failed. Please check email credentials." });
+      console.error("Authentication error detected");
+      return res.status(500).json({
+        msg: "Email authentication failed. Please check email credentials.",
+        error: "EAUTH",
+      });
     }
+
     return res.status(500).json({
       msg: "Failed to send email. Please try again later or contact me directly.",
+      error: error.message || String(error),
+      code: error.code || "UNKNOWN",
     });
   }
 }
