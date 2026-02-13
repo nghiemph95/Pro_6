@@ -27,14 +27,37 @@
 }
 
 .resume-bullets {
-  background: linear-gradient(180deg, #1f2235 0%, #2d3142 100%);
+  background: linear-gradient(180deg, #1a1d2e 0%, #252a3d 50%, #2d3142 100%);
   min-height: 650px;
   height: auto;
   width: 320px;
   position: sticky;
   top: 120px;
-  padding: 40px 20px;
-  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+  padding: 32px 0;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.resume-bullets .resume-tabs-header {
+  padding: 0 24px 20px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.resume-bullets .resume-tabs-title {
+  font-family: "Poppins SemiBold";
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0;
+}
+
+.resume-bullets .resume-tabs-subtitle {
+  font-family: "Poppins Light";
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.65);
+  margin: 4px 0 0 0;
 }
 
 .resume-bullet-details {
@@ -220,6 +243,24 @@
   font-weight: 600;
 }
 
+.achievement-period {
+  margin-bottom: 20px;
+}
+
+.achievement-period:last-child {
+  margin-bottom: 0;
+}
+
+.achievement-period-heading {
+  font-size: 13px;
+  font-family: "Poppins SemiBold";
+  color: #ff5823;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(255, 88, 35, 0.2);
+}
+
 .interests-description {
   margin: 12px 0;
   text-align: justify;
@@ -368,6 +409,67 @@
   font-size: 12px;
 }
 
+/* HackerRank certifications subsection */
+.certifications-intro-hackerrank {
+  margin-top: 32px;
+  margin-bottom: 20px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(31, 34, 53, 0.1);
+}
+
+.certifications-grid-hackerrank {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.certification-card-hackerrank {
+  border-color: rgba(0, 234, 100, 0.25);
+}
+
+.certification-card-hackerrank::before {
+  background: linear-gradient(90deg, #00c853 0%, #00ea64 100%);
+}
+
+.certification-card-hackerrank:hover {
+  border-color: rgba(0, 234, 100, 0.5);
+  box-shadow: 0 12px 32px rgba(0, 200, 83, 0.15);
+}
+
+.certification-hackerrank-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: linear-gradient(135deg, #00c853 0%, #00ea64 100%);
+  border-radius: 10px;
+  color: #fff;
+  font-family: "Poppins Bold";
+  font-size: 13px;
+  letter-spacing: 0.3px;
+}
+
+.cert-hackerrank-icon {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.certification-verified-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #00a843;
+  font-family: "Poppins SemiBold";
+  margin-top: 2px;
+}
+
+.certification-verified-tag i {
+  font-size: 14px;
+}
+
+.certification-card-hackerrank .certification-verify {
+  color: #ff5823;
+}
+
 .resume-details-carousal {
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
@@ -383,65 +485,71 @@
 
 .bullet-container {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   height: 100%;
   width: 100%;
   position: relative;
 }
 
 .bullets {
-  width: 86%;
+  width: 100%;
   position: relative;
   z-index: 2;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .bullet {
   display: flex;
   align-items: center;
   cursor: pointer;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  height: 50px;
-  margin: 12px 0;
-  padding: 0 16px;
-  border-radius: 12px;
-  width: 50px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 2px solid transparent;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  min-height: 52px;
+  margin: 0;
+  padding: 0 18px 0 14px;
+  border-radius: 14px;
+  width: 100%;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid transparent;
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .bullet::before {
   content: '';
   position: absolute;
   left: 0;
-  top: 0;
-  height: 100%;
-  width: 4px;
+  top: 50%;
+  transform: translateY(-50%) scaleY(0);
+  height: 60%;
+  width: 3px;
   background: linear-gradient(180deg, #ff5823 0%, #ff8c5a 100%);
-  transform: scaleY(0);
-  transition: transform 0.3s ease;
+  border-radius: 0 3px 3px 0;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .bullet:hover {
-  background: rgba(255, 255, 255, 0.15);
-  transform: translateX(4px);
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(6px);
 }
 
 .bullet:hover::before {
-  transform: scaleY(1);
+  transform: translateY(-50%) scaleY(1);
 }
 
 .selected-bullet {
-  background: linear-gradient(135deg, rgba(255, 88, 35, 0.2) 0%, rgba(255, 140, 90, 0.15) 100%);
-  border-color: rgba(255, 88, 35, 0.4);
-  width: 100%;
-  box-shadow: 0 4px 12px rgba(255, 88, 35, 0.2);
+  background: linear-gradient(135deg, rgba(255, 88, 35, 0.18) 0%, rgba(255, 140, 90, 0.1) 100%);
+  border-color: rgba(255, 88, 35, 0.35);
+  box-shadow: 0 4px 16px rgba(255, 88, 35, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 .selected-bullet::before {
-  transform: scaleY(1);
+  transform: translateY(-50%) scaleY(1);
+  height: 70%;
 }
 
 .selected-bullet .bullet-label {
@@ -449,36 +557,44 @@
   font-weight: 600;
 }
 
+.selected-bullet:hover {
+  background: linear-gradient(135deg, rgba(255, 88, 35, 0.22) 0%, rgba(255, 140, 90, 0.14) 100%);
+}
+
 .bullet-label {
-  font-size: 14px;
+  font-size: 13.5px;
   white-space: nowrap;
-  font-family: "Poppins SemiBold";
-  color: rgba(255, 255, 255, 0.8);
-  transition: color 0.3s ease;
+  font-family: "Poppins Medium";
+  color: rgba(255, 255, 255, 0.75);
+  transition: color 0.25s ease;
+  letter-spacing: 0.01em;
 }
 
 .bullet-logo {
-  height: 20px;
-  width: 20px;
-  margin: 0 16px 0 0;
+  height: 22px;
+  width: 22px;
+  min-width: 22px;
+  margin: 0 14px 0 0;
   filter: brightness(0) invert(1);
-  opacity: 0.7;
+  opacity: 0.65;
   transition: all 0.3s ease;
 }
 
 .selected-bullet .bullet-logo {
   opacity: 1;
-  filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(0deg);
+  filter: brightness(0) invert(1);
 }
 
 .bullet-icons {
-  width: 4px;
-  height: 100%;
+  width: 3px;
+  min-height: 120px;
+  height: calc(100% - 48px);
   z-index: 1;
-  background: linear-gradient(180deg, rgba(255, 88, 35, 0.3) 0%, rgba(255, 88, 35, 0.1) 100%);
+  background: linear-gradient(180deg, rgba(255, 88, 35, 0.25) 0%, rgba(255, 88, 35, 0.08) 50%, transparent 100%);
   position: absolute;
-  left: 0;
-  border-radius: 0 2px 2px 0;
+  left: 16px;
+  top: 24px;
+  border-radius: 3px;
 }
 
 .selected-bullet {
@@ -667,7 +783,7 @@
   }
 
   .bullets {
-    width: 90%;
+    width: 100%;
   }
 
   .resume-card {
@@ -692,8 +808,16 @@
     top: 0;
     width: 100%;
     min-height: auto;
-    padding: 30px 20px;
+    padding: 24px 0 20px;
     border-radius: 20px 20px 0 0;
+  }
+
+  .resume-bullets .resume-tabs-header {
+    padding: 0 20px 16px;
+  }
+
+  .bullets {
+    padding: 0 12px;
   }
 
   .selected-bullet {
@@ -746,12 +870,30 @@
   }
   
   .resume-bullets {
-    padding: 20px 16px;
+    padding: 20px 0 16px;
+  }
+
+  .resume-bullets .resume-tabs-header {
+    padding: 0 16px 12px;
+  }
+
+  .resume-bullets .resume-tabs-title {
+    font-size: 10px;
+  }
+
+  .resume-bullets .resume-tabs-subtitle {
+    font-size: 12px;
+  }
+
+  .bullets {
+    padding: 0 12px;
+    gap: 4px;
   }
   
   .bullet {
-    height: 45px;
-    margin: 10px 0;
+    min-height: 46px;
+    padding: 0 14px 0 12px;
+    border-radius: 12px;
   }
   
   .resume-heading {
@@ -790,8 +932,14 @@
     left: 4px;
   }
   
-  .certifications-grid {
+  .certifications-grid,
+  .certifications-grid-hackerrank {
     grid-template-columns: 1fr;
+  }
+
+  .certifications-intro-hackerrank {
+    margin-top: 24px;
+    padding-top: 20px;
   }
   
   .certification-card {

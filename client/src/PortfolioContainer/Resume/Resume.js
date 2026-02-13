@@ -69,6 +69,15 @@ export default function Resume(props) {
     },
   ];
 
+  const hackerRankCertifications = [
+    { name: "JavaScript (Basic)", verified: true },
+    { name: "JavaScript (Intermediate)", verified: true },
+    { name: "Node (Basic)", verified: true },
+    { name: "Problem Solving (Basic)", verified: true },
+    { name: "Problem Solving (Intermediate)", verified: true },
+  ];
+  const hackerRankProfileUrl = "https://www.hackerrank.com/profile/nghiemph95";
+
   //here we have
   const programmingSkillsDetails = [
     { skill: "JavaScript", ratingPercentage: 80 },
@@ -363,34 +372,81 @@ export default function Resume(props) {
           </a>
         ))}
       </div>
+
+      <div className="certifications-intro certifications-intro-hackerrank">
+        <h3 className="certifications-title">HackerRank Certifications</h3>
+        <p className="certifications-subtitle">Skill certificates — view profile on HackerRank</p>
+      </div>
+      <div className="certifications-grid certifications-grid-hackerrank">
+        {hackerRankCertifications.map((cert, index) => (
+          <a
+            key={index}
+            href={hackerRankProfileUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="certification-card certification-card-hackerrank"
+          >
+            <div className="certification-card-inner">
+              <div className="certification-hackerrank-badge">
+                <span className="cert-hackerrank-icon">⌗</span>
+                <span className="cert-hackerrank-text">HackerRank</span>
+              </div>
+              <h4 className="certification-name">{cert.name}</h4>
+              {cert.verified && (
+                <span className="certification-verified-tag">
+                  <i className="fa fa-check-circle" aria-hidden="true"></i> Verified
+                </span>
+              )}
+              <span className="certification-verify">
+                View on HackerRank
+                <i className="fa fa-external-link" aria-hidden="true"></i>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
     </div>,
 
-    /* Achievements */
+    /* Achievements – theo từng thời kỳ, ngắn gọn */
     <div className="resume-screen-container" key="interests">
       <ResumeHeading
-        heading={"Learning Courses"}
-        subHeading={"PRACTICE BY MYSELF"}
-        fromDate={"2021"}
-        toDate={"now"}
+        heading={"Achievements & Learning"}
+        subHeading={"BY TIME PERIOD"}
+        fromDate={""}
+        toDate={""}
       />
-      <div className="interests-description">
-        <span className="interests-description-text">
-          1. The Ultimate ReactJS Responsive Website - Udemy Course (2021)
-        </span>
+      <div className="achievement-period">
+        <div className="achievement-period-heading">2024 – Now</div>
+        <div className="interests-description">
+          <span className="interests-description-text">AWS Certified Solutions Architect – Associate & Developer – Associate.</span>
+        </div>
+        <div className="interests-description">
+          <span className="interests-description-text">Senior Fullstack / Tech Lead: scalable web apps, cloud & team delivery.</span>
+        </div>
       </div>
-      <div className="interests-description">
-        <span className="interests-description-text">
-          2. 50 Projects In 50 Days - HTML, CSS and JavaScript - Udemy Course
-          (2022)
-        </span>
+      <div className="achievement-period">
+        <div className="achievement-period-heading">2022 – 2023</div>
+        <div className="interests-description">
+          <span className="interests-description-text">50 Projects In 50 Days (HTML, CSS, JS) – Udemy.</span>
+        </div>
+        <div className="interests-description">
+          <span className="interests-description-text">The Complete Front-End Web Development Course – Udemy.</span>
+        </div>
       </div>
-      <div className="interests-description">
-        <span className="interests-description-text">
-          3. The Complete Front-End Web Development Course - Udemy Course (2022)
-        </span>
+      <div className="achievement-period">
+        <div className="achievement-period-heading">2021</div>
+        <div className="interests-description">
+          <span className="interests-description-text">The Ultimate ReactJS Responsive Website – Udemy.</span>
+        </div>
+        <div className="interests-description">
+          <span className="interests-description-text">JavaScript & modern front-end practice.</span>
+        </div>
       </div>
-      <div className="interests-description">
-        <span className="interests-description-text">4. JavaScript (2021)</span>
+      <div className="achievement-period">
+        <div className="achievement-period-heading">2017 – 2015</div>
+        <div className="interests-description">
+          <span className="interests-description-text">7th IoT Startup Competition – HTP Ho Chi Minh City (National Youth Service Corps).</span>
+        </div>
       </div>
     </div>,
   ];
@@ -496,6 +552,10 @@ export default function Resume(props) {
         <ScreenHeading title={"Resume"} subHeading={"My Formal Bio Details"} />
         <div className="resume-card">
           <div className="resume-bullets">
+            <div className="resume-tabs-header">
+              <p className="resume-tabs-title">Resume</p>
+              <p className="resume-tabs-subtitle">Choose a section</p>
+            </div>
             <div className="bullet-container">
               <div className="bullet-icons"></div>
               <div className="bullets">{getBullets()}</div>
